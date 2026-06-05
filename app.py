@@ -270,7 +270,31 @@ def _selected_employee_profile(raw_data: pd.DataFrame) -> dict[str, Any]:
     else:
         index = st.number_input("Row", min_value=0, max_value=max(len(raw_data) - 1, 0), value=0)
         row = raw_data.iloc[int(index)]
-    return row.drop(labels=["Attrition"], errors="ignore").to_dict()
+    return _prediction_profile_from_row(row)
+
+
+def _prediction_profile_from_row(row: pd.Series) -> dict[str, Any]:
+    profile = row.drop(labels=["Attrition"], errors="ignore").to_dict()
+    clean_profile: dict[str, Any] = {}
+    for key, value in profile.items():
+        if pd.isna(value):
+            clean_profile[key] = None
+        elif hasattr(value, "item"):
+            clean_profile[key] = value.item()
+        else:
+            clean_profile[key] = value
+    return clean_profile
+
+
+def _create_demo_audit_entries(raw_data: pd.DataFrame, artifact: dict[str, Any], count: int = 8) -> int:
+    if raw_data.empty:
+        return 0
+    created = 0
+    for _, row in raw_data.head(count).iterrows():
+        profile = _prediction_profile_from_row(row)
+        predict_employee(profile, write_audit=True, artifact=artifact)
+        created += 1
+    return created
 
 
 def _image_if_exists(path: str | None, caption: str, width: int = 850) -> None:
@@ -754,11 +778,24 @@ with tabs[5]:
 
 with tabs[6]:
     st.subheader("Prediction Audit Trail")
+    seeded_message = st.session_state.pop("audit_seed_message", None)
+    if seeded_message:
+        st.success(seeded_message)
     filter_cols = st.columns([1, 1, 1])
     row_limit = filter_cols[0].slider("Row limit", min_value=25, max_value=500, value=250, step=25)
     audit_entries = pd.DataFrame(read_audit_entries(limit=row_limit))
     if audit_entries.empty:
-        st.info("No prediction audit entries yet. Use the API `/predict` endpoint to create audited predictions.")
+        st.info(
+            "No prediction audit entries yet. On Streamlit Cloud, the separate FastAPI `/predict` service is not running inside this app process. "
+            "Create demo audited predictions here, or connect the FastAPI service/Postgres database for production audit persistence."
+        )
+        if raw_data.empty:
+            st.caption("Raw HR sample data is not available, so demo audit entries cannot be created.")
+        elif st.button("Create Demo Audit Entries", type="primary"):
+            with st.spinner("Scoring sample employees and writing audit entries..."):
+                created = _create_demo_audit_entries(raw_data, artifact)
+            st.session_state["audit_seed_message"] = f"Created {created} audited demo prediction entries."
+            st.rerun()
     else:
         if "timestamp_utc" in audit_entries:
             audit_entries["timestamp_utc"] = pd.to_datetime(audit_entries["timestamp_utc"], errors="coerce", utc=True)
