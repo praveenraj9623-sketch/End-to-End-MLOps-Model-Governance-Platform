@@ -16,7 +16,9 @@ import pandas as pd
 import streamlit as st
 
 from src.dashboard.data_loaders import load_dashboard_artifacts, read_csv
+from src.dashboard.calibration import calibration_points_from_artifact
 from src.dashboard.figures import (
+    calibration_curve_chart,
     candidate_comparison_chart,
     confusion_matrix_chart,
     drift_feature_chart,
@@ -310,6 +312,16 @@ def _image_if_exists(path: str | None, caption: str, width: int = 850) -> None:
     image_path = Path(path)
     if image_path.exists():
         st.image(str(image_path), caption=caption, width=width)
+
+
+def _image_rendered(path: str | None, caption: str, width: int = 850) -> bool:
+    if not path:
+        return False
+    image_path = Path(path)
+    if not image_path.exists():
+        return False
+    st.image(str(image_path), caption=caption, width=width)
+    return True
 
 
 def _plotly(fig: Any, *, height: int | None = None) -> None:
@@ -614,7 +626,16 @@ with tabs[1]:
     with cal_mid:
         with st.container():
             st.caption("Shows how close predicted probabilities are to observed outcomes. Lower Brier score is better.")
-            _image_if_exists(calibration_path, "Calibration curve", width=560)
+            if not _image_rendered(calibration_path, "Calibration curve", width=560):
+                calibration_points, dynamic_brier = calibration_points_from_artifact(raw_data, artifact)
+                if calibration_points.empty:
+                    st.warning(
+                        "Calibration image is not available and the dynamic calibration curve could not be computed. "
+                        "Push the calibration artifact or include the raw data/model artifact in the deployment."
+                    )
+                else:
+                    _plotly(calibration_curve_chart(calibration_points, dynamic_brier), height=380)
+                    st.caption("Rendered dynamically because the static calibration image is not available in this deployment.")
 
 with tabs[2]:
     st.subheader("Model Registry")

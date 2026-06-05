@@ -24,6 +24,18 @@ reports/**/*.html
 reports/**/*.png
 reports/**/*.csv
 
+# Keep the small dashboard deployment artifacts available to Streamlit Cloud.
+!models/attrition_model.joblib
+!models/best_model.joblib
+!reports/performance_logs/candidate_model_comparison.csv
+!reports/performance_logs/model_metrics.csv
+!reports/performance_logs/threshold_metrics.csv
+!reports/performance_logs/current_production_predictions.csv
+!reports/performance_logs/prediction_audit_log.csv
+!reports/performance_logs/calibration_curve.png
+!reports/performance_logs/confusion_matrix.png
+!reports/shap_reports/xgboost_shap_summary.png
+
 # DVC
 .dvc/cache/
 

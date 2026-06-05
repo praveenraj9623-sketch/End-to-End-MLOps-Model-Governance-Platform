@@ -7,6 +7,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.dashboard.calibration import calibration_points_from_artifact
+from src.dashboard.figures import calibration_curve_chart
 from src.features.engineering import ID_COLUMN
 from src.governance.fairness import FAIRNESS_FEATURES, generate_fairness_report
 from src.dashboard.governance_logic import (
@@ -191,3 +193,21 @@ def test_audit_row_detail_parses_nested_payload_json() -> None:
     assert detail["timestamp_utc"] == "2026-06-05T13:00:00+00:00"
     assert detail["request_payload"]["Department"] == "Sales"
     assert detail["response_payload"]["risk_level"] == "High"
+
+
+def test_calibration_fallback_handles_missing_inputs() -> None:
+    points, brier_score = calibration_points_from_artifact(pd.DataFrame(), {})
+    assert points.empty
+    assert brier_score is None
+
+
+def test_dynamic_calibration_chart_builds_from_points() -> None:
+    points = pd.DataFrame(
+        {
+            "mean_predicted_probability": [0.1, 0.4, 0.8],
+            "observed_attrition_rate": [0.05, 0.35, 0.75],
+        }
+    )
+    figure = calibration_curve_chart(points, brier_score=0.123)
+    assert len(figure.data) == 2
+    assert "Brier=0.123" in figure.layout.title.text

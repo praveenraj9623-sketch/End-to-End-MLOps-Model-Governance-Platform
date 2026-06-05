@@ -123,6 +123,45 @@ def fairness_group_chart(report: dict[str, Any], feature: str) -> go.Figure:
     return fig
 
 
+def calibration_curve_chart(points: pd.DataFrame, brier_score: float | None = None) -> go.Figure:
+    """Build a calibration curve from holdout probability bins."""
+    fig = go.Figure()
+    fig.add_trace(
+        go.Scatter(
+            x=[0, 1],
+            y=[0, 1],
+            mode="lines",
+            line=dict(color="#64748b", dash="dash"),
+            name="Perfect calibration",
+            hovertemplate="Predicted=%{x:.2f}<br>Observed=%{y:.2f}<extra></extra>",
+        )
+    )
+    if not points.empty:
+        fig.add_trace(
+            go.Scatter(
+                x=points["mean_predicted_probability"],
+                y=points["observed_attrition_rate"],
+                mode="lines+markers",
+                line=dict(color="#2563eb", width=3),
+                marker=dict(size=8),
+                name="Model calibration",
+                hovertemplate="Mean predicted=%{x:.3f}<br>Observed attrition=%{y:.3f}<extra></extra>",
+            )
+        )
+    title = "Dynamic Calibration Curve"
+    if brier_score is not None:
+        title = f"{title} (Brier={brier_score:.3f})"
+    fig.update_layout(
+        title=title,
+        height=360,
+        margin=dict(l=10, r=10, t=45, b=10),
+        xaxis=dict(title="Mean Predicted Probability", range=[0, 1]),
+        yaxis=dict(title="Observed Attrition Rate", range=[0, 1]),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
+    )
+    return fig
+
+
 def confusion_matrix_chart(counts: dict[str, int], title: str = "Active Threshold Confusion Matrix") -> go.Figure:
     """Build a compact active-threshold confusion-matrix heatmap."""
     matrix = standard_confusion_matrix(counts)
