@@ -1,0 +1,346 @@
+{
+  "generated_at_utc": "2026-06-05T13:52:19.143473+00:00",
+  "checks": {
+    "schema": {
+      "status": "pass",
+      "expected_column_count": 35,
+      "observed_column_count": 35,
+      "missing_columns": [],
+      "extra_columns": [],
+      "target_values": [
+        "No",
+        "Yes"
+      ],
+      "valid_target": true
+    },
+    "missing_values": {
+      "status": "pass",
+      "threshold": 0.2,
+      "missing_percentages": {
+        "Age": 0.0,
+        "Attrition": 0.0,
+        "BusinessTravel": 0.0,
+        "DailyRate": 0.0,
+        "Department": 0.0,
+        "DistanceFromHome": 0.0,
+        "Education": 0.0,
+        "EducationField": 0.0,
+        "EmployeeCount": 0.0,
+        "EmployeeNumber": 0.0,
+        "EnvironmentSatisfaction": 0.0,
+        "Gender": 0.0,
+        "HourlyRate": 0.0,
+        "JobInvolvement": 0.0,
+        "JobLevel": 0.0,
+        "JobRole": 0.0,
+        "JobSatisfaction": 0.0,
+        "MaritalStatus": 0.0,
+        "MonthlyIncome": 0.0,
+        "MonthlyRate": 0.0,
+        "NumCompaniesWorked": 0.0,
+        "Over18": 0.0,
+        "OverTime": 0.0,
+        "PercentSalaryHike": 0.0,
+        "PerformanceRating": 0.0,
+        "RelationshipSatisfaction": 0.0,
+        "StandardHours": 0.0,
+        "StockOptionLevel": 0.0,
+        "TotalWorkingYears": 0.0,
+        "TrainingTimesLastYear": 0.0,
+        "WorkLifeBalance": 0.0,
+        "YearsAtCompany": 0.0,
+        "YearsInCurrentRole": 0.0,
+        "YearsSinceLastPromotion": 0.0,
+        "YearsWithCurrManager": 0.0
+      },
+      "columns_above_threshold": []
+    },
+    "value_ranges": {
+      "status": "pass",
+      "columns": {
+        "Age": {
+          "expected_min": 18,
+          "expected_max": 65,
+          "observed_min": 18.0,
+          "observed_max": 60.0,
+          "status": "pass"
+        },
+        "DailyRate": {
+          "expected_min": 100,
+          "expected_max": 1600,
+          "observed_min": 102.0,
+          "observed_max": 1499.0,
+          "status": "pass"
+        },
+        "DistanceFromHome": {
+          "expected_min": 1,
+          "expected_max": 30,
+          "observed_min": 1.0,
+          "observed_max": 29.0,
+          "status": "pass"
+        },
+        "Education": {
+          "expected_min": 1,
+          "expected_max": 5,
+          "observed_min": 1.0,
+          "observed_max": 5.0,
+          "status": "pass"
+        },
+        "EmployeeCount": {
+          "expected_min": 1,
+          "expected_max": 1,
+          "observed_min": 1.0,
+          "observed_max": 1.0,
+          "status": "pass"
+        },
+        "EnvironmentSatisfaction": {
+          "expected_min": 1,
+          "expected_max": 4,
+          "observed_min": 1.0,
+          "observed_max": 4.0,
+          "status": "pass"
+        },
+        "HourlyRate": {
+          "expected_min": 30,
+          "expected_max": 100,
+          "observed_min": 30.0,
+          "observed_max": 100.0,
+          "status": "pass"
+        },
+        "JobInvolvement": {
+          "expected_min": 1,
+          "expected_max": 4,
+          "observed_min": 1.0,
+          "observed_max": 4.0,
+          "status": "pass"
+        },
+        "JobLevel": {
+          "expected_min": 1,
+          "expected_max": 5,
+          "observed_min": 1.0,
+          "observed_max": 5.0,
+          "status": "pass"
+        },
+        "JobSatisfaction": {
+          "expected_min": 1,
+          "expected_max": 4,
+          "observed_min": 1.0,
+          "observed_max": 4.0,
+          "status": "pass"
+        },
+        "MonthlyIncome": {
+          "expected_min": 1000,
+          "expected_max": 25000,
+          "observed_min": 1009.0,
+          "observed_max": 19999.0,
+          "status": "pass"
+        },
+        "MonthlyRate": {
+          "expected_min": 2000,
+          "expected_max": 27000,
+          "observed_min": 2094.0,
+          "observed_max": 26999.0,
+          "status": "pass"
+        },
+        "NumCompaniesWorked": {
+          "expected_min": 0,
+          "expected_max": 10,
+          "observed_min": 0.0,
+          "observed_max": 9.0,
+          "status": "pass"
+        },
+        "PercentSalaryHike": {
+          "expected_min": 10,
+          "expected_max": 25,
+          "observed_min": 11.0,
+          "observed_max": 25.0,
+          "status": "pass"
+        },
+        "PerformanceRating": {
+          "expected_min": 3,
+          "expected_max": 4,
+          "observed_min": 3.0,
+          "observed_max": 4.0,
+          "status": "pass"
+        },
+        "RelationshipSatisfaction": {
+          "expected_min": 1,
+          "expected_max": 4,
+          "observed_min": 1.0,
+          "observed_max": 4.0,
+          "status": "pass"
+        },
+        "StandardHours": {
+          "expected_min": 80,
+          "expected_max": 80,
+          "observed_min": 80.0,
+          "observed_max": 80.0,
+          "status": "pass"
+        },
+        "StockOptionLevel": {
+          "expected_min": 0,
+          "expected_max": 3,
+          "observed_min": 0.0,
+          "observed_max": 3.0,
+          "status": "pass"
+        },
+        "TotalWorkingYears": {
+          "expected_min": 0,
+          "expected_max": 45,
+          "observed_min": 0.0,
+          "observed_max": 40.0,
+          "status": "pass"
+        },
+        "TrainingTimesLastYear": {
+          "expected_min": 0,
+          "expected_max": 6,
+          "observed_min": 0.0,
+          "observed_max": 6.0,
+          "status": "pass"
+        },
+        "WorkLifeBalance": {
+          "expected_min": 1,
+          "expected_max": 4,
+          "observed_min": 1.0,
+          "observed_max": 4.0,
+          "status": "pass"
+        },
+        "YearsAtCompany": {
+          "expected_min": 0,
+          "expected_max": 40,
+          "observed_min": 0.0,
+          "observed_max": 40.0,
+          "status": "pass"
+        },
+        "YearsInCurrentRole": {
+          "expected_min": 0,
+          "expected_max": 18,
+          "observed_min": 0.0,
+          "observed_max": 18.0,
+          "status": "pass"
+        },
+        "YearsSinceLastPromotion": {
+          "expected_min": 0,
+          "expected_max": 15,
+          "observed_min": 0.0,
+          "observed_max": 15.0,
+          "status": "pass"
+        },
+        "YearsWithCurrManager": {
+          "expected_min": 0,
+          "expected_max": 17,
+          "observed_min": 0.0,
+          "observed_max": 17.0,
+          "status": "pass"
+        }
+      },
+      "columns_outside_expected_range": []
+    },
+    "cardinality": {
+      "status": "pass",
+      "columns": {
+        "Attrition": {
+          "unique_count": 2,
+          "observed_values": [
+            "No",
+            "Yes"
+          ],
+          "unexpected_values": [],
+          "status": "pass"
+        },
+        "BusinessTravel": {
+          "unique_count": 3,
+          "observed_values": [
+            "Non-Travel",
+            "Travel_Frequently",
+            "Travel_Rarely"
+          ],
+          "unexpected_values": [],
+          "status": "pass"
+        },
+        "Department": {
+          "unique_count": 3,
+          "observed_values": [
+            "Human Resources",
+            "Research & Development",
+            "Sales"
+          ],
+          "unexpected_values": [],
+          "status": "pass"
+        },
+        "EducationField": {
+          "unique_count": 6,
+          "observed_values": [
+            "Human Resources",
+            "Life Sciences",
+            "Marketing",
+            "Medical",
+            "Other",
+            "Technical Degree"
+          ],
+          "unexpected_values": [],
+          "status": "pass"
+        },
+        "Gender": {
+          "unique_count": 2,
+          "observed_values": [
+            "Female",
+            "Male"
+          ],
+          "unexpected_values": [],
+          "status": "pass"
+        },
+        "JobRole": {
+          "unique_count": 9,
+          "observed_values": [
+            "Healthcare Representative",
+            "Human Resources",
+            "Laboratory Technician",
+            "Manager",
+            "Manufacturing Director",
+            "Research Director",
+            "Research Scientist",
+            "Sales Executive",
+            "Sales Representative"
+          ],
+          "unexpected_values": [],
+          "status": "pass"
+        },
+        "MaritalStatus": {
+          "unique_count": 3,
+          "observed_values": [
+            "Divorced",
+            "Married",
+            "Single"
+          ],
+          "unexpected_values": [],
+          "status": "pass"
+        },
+        "Over18": {
+          "unique_count": 1,
+          "observed_values": [
+            "Y"
+          ],
+          "unexpected_values": [],
+          "status": "pass"
+        },
+        "OverTime": {
+          "unique_count": 2,
+          "observed_values": [
+            "No",
+            "Yes"
+          ],
+          "unexpected_values": [],
+          "status": "pass"
+        }
+      },
+      "columns_with_unexpected_categories": []
+    }
+  },
+  "summary": {
+    "overall_status": "pass",
+    "check_count": 4,
+    "failed_checks": 0,
+    "warning_checks": 0
+  }
+}

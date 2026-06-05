@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>End-to-End MLOps & Model Governance Platform - Project Breakdown</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({ startOnLoad: true, theme: "base" });</script>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; color: #111827; background: #f8fafc; }
+    header { background: #0f172a; color: #ffffff; padding: 32px 44px; }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px; }
+    section { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 22px; margin-bottom: 18px; }
+    h1, h2, h3 { margin-top: 0; }
+    h1 { font-size: 30px; }
+    h2 { font-size: 22px; color: #0f172a; }
+    h3 { font-size: 17px; color: #1f2937; }
+    code, pre { background: #f1f5f9; border-radius: 6px; }
+    code { padding: 2px 5px; }
+    pre { padding: 14px; overflow: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid #e5e7eb; padding: 9px; text-align: left; vertical-align: top; }
+    th { background: #f8fafc; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .pill { display: inline-block; border: 1px solid #cbd5e1; border-radius: 999px; padding: 4px 10px; margin: 3px; background: #ffffff; }
+    .note { color: #475569; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>End-to-End MLOps & Model Governance Platform</h1>
+    <p>Full project breakdown for cross-checking the implementation, dashboard behavior, workflows, and generated artifacts.</p>
+  </header>
+  <main>
+    <section>
+      <h2>Project Idea</h2>
+      <p>
+        This is a local production-style MLOps governance demo for IBM HR Attrition. It trains attrition-risk models,
+        selects a champion using business cost and PR-AUC, serves predictions through FastAPI, monitors drift,
+        creates fairness diagnostics, writes privacy-aware audit logs, and displays everything in Streamlit.
+      </p>
+      <div>
+        <span class="pill">FastAPI</span>
+        <span class="pill">Streamlit</span>
+        <span class="pill">MLflow local fallback</span>
+        <span class="pill">DVC pipeline</span>
+        <span class="pill">XGBoost champion</span>
+        <span class="pill">Fairness report</span>
+        <span class="pill">Drift simulation</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>What app.py Displays</h2>
+      <table>
+        <tr><th>Tab</th><th>Purpose</th><th>Main Display</th></tr>
+        <tr><td>Executive Summary</td><td>Portfolio-level governance overview.</td><td>AUC, PR-AUC, recall, precision, F1, business cost, drift status, calibration status, fairness availability, and risk distribution.</td></tr>
+        <tr><td>Model Performance</td><td>Compare candidate models and thresholds.</td><td>Candidate ranking, business-cost chart, threshold tradeoff chart, calibration curve, confusion matrix.</td></tr>
+        <tr><td>Model Registry</td><td>Show MLflow or local champion governance state.</td><td>Registry rows, local fallback, generated model card JSON.</td></tr>
+        <tr><td>Drift Monitor</td><td>Simulate production data shifts.</td><td>Baseline, compensation shift, workload pressure, hiring mix, top drifted features, retraining flag.</td></tr>
+        <tr><td>Explainability</td><td>Explain one employee prediction.</td><td>Employee selector, risk level, probability, recommendation, top local drivers, global feature importance.</td></tr>
+        <tr><td>Fairness & Ethics</td><td>Review group-level model behavior.</td><td>Gender, AgeGroup, Department, JobRole, MaritalStatus rates and review flags.</td></tr>
+        <tr><td>Audit Trail</td><td>Review prediction logs.</td><td>Hashed employee id, masked sensitive payload, probability, risk, threshold, action, and drivers.</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Architecture Mind Map</h2>
+      <pre class="mermaid">
+mindmap
+  root((MLOps Governance Platform))
+    Data
+      Raw HR CSV
+      Validation report
+      Train/test split before preprocessing
+    Features
+      ColumnTransformer
+      Numeric imputation and scaling
+      Categorical imputation and one-hot encoding
+      EmployeeNumber excluded
+    Models
+      Logistic Regression
+      XGBoost
+      LightGBM
+      Champion by business cost then PR-AUC then recall
+    Governance
+      Threshold tuning
+      Calibration
+      Drift reports
+      Fairness diagnostics
+      Model card
+    Serving
+      FastAPI
+      Shared prediction service
+      Privacy-aware audit log
+    Dashboard
+      Streamlit tabs
+      Explanations
+      Drift simulation
+      Audit review
+      </pre>
+    </section>
+
+    <section>
+      <h2>End-to-End Flow</h2>
+      <pre class="mermaid">
+flowchart LR
+  A["data/raw/hr_attrition.csv"] --> B["src.data.ingestion"]
+  B --> C["src.data.validation"]
+  C --> D["src.features.engineering"]
+  D --> E["Raw train/test split"]
+  E --> F["Model-specific sklearn pipelines"]
+  F --> G["Candidate training"]
+  G --> H["Threshold and business-cost tuning"]
+  H --> I["Champion artifact"]
+  I --> J["Evaluation reports"]
+  I --> K["Drift scoring"]
+  I --> L["Fairness report"]
+  I --> M["Model card"]
+  I --> N["FastAPI predict"]
+  I --> O["Streamlit dashboard"]
+      </pre>
+    </section>
+
+    <section>
+      <h2>Serving Flow</h2>
+      <pre class="mermaid">
+sequenceDiagram
+  participant User
+  participant FastAPI
+  participant PredictionService
+  participant ModelArtifact
+  participant AuditLog
+  User->>FastAPI: POST /predict
+  FastAPI->>PredictionService: predict_employee(profile)
+  PredictionService->>ModelArtifact: load pipeline and threshold
+  ModelArtifact-->>PredictionService: probability
+  PredictionService->>PredictionService: risk band and top drivers
+  PredictionService->>AuditLog: write masked audit row
+  PredictionService-->>FastAPI: probability, risk, drivers, action
+  FastAPI-->>User: governance prediction response
+      </pre>
+    </section>
+
+    <section>
+      <h2>Important Code Files</h2>
+      <table>
+        <tr><th>File</th><th>Role</th></tr>
+        <tr><td><code>app.py</code></td><td>Streamlit governance dashboard.</td></tr>
+        <tr><td><code>src/api/main.py</code></td><td>FastAPI endpoints.</td></tr>
+        <tr><td><code>src/services/prediction_service.py</code></td><td>Shared prediction, risk scoring, drivers, and audit masking.</td></tr>
+        <tr><td><code>src/services/retraining_service.py</code></td><td>Airflow trigger or local Python retraining fallback.</td></tr>
+        <tr><td><code>src/features/engineering.py</code></td><td>Leakage-safe split and preprocessing.</td></tr>
+        <tr><td><code>src/models/train.py</code></td><td>Candidate training, threshold tuning, calibration, champion artifact.</td></tr>
+        <tr><td><code>src/models/evaluate.py</code></td><td>Threshold-aware performance and business metrics.</td></tr>
+        <tr><td><code>src/monitoring/drift_detection.py</code></td><td>Raw drift simulation and Evidently reports.</td></tr>
+        <tr><td><code>src/governance/fairness.py</code></td><td>Fairness diagnostics and review flags.</td></tr>
+        <tr><td><code>scripts/setup_demo.py</code></td><td>One-command artifact builder.</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Command Prompt Runbook</h2>
+      <pre><code>.\.venv\Scripts\activate.bat
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+python scripts\setup_demo.py</code></pre>
+      <pre><code>.\.venv\Scripts\activate.bat
+uvicorn src.api.main:app --host 127.0.0.1 --port 8000</code></pre>
+      <pre><code>.\.venv\Scripts\activate.bat
+streamlit run app.py --server.port 8502</code></pre>
+    </section>
+
+    <section>
+      <h2>Current Generated Champion Summary</h2>
+      <table>
+        <tr><th>Item</th><th>Value</th></tr>
+        <tr><td>Champion model</td><td>XGBoost</td></tr>
+        <tr><td>Selected threshold</td><td>0.10</td></tr>
+        <tr><td>AUC</td><td>0.753</td></tr>
+        <tr><td>PR-AUC</td><td>0.454</td></tr>
+        <tr><td>Recall</td><td>0.745</td></tr>
+        <tr><td>Business cost</td><td>$309,000</td></tr>
+        <tr><td>Baseline drift score</td><td>0.022, retraining not required</td></tr>
+      </table>
+      <p class="note">Values are from the local artifacts generated on this machine and may change if the dataset or hyperparameters are changed.</p>
+    </section>
+  </main>
+</body>
+</html>

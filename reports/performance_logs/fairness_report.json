@@ -1,0 +1,446 @@
+{
+  "generated_at_utc": "2026-06-05T15:35:57.230267+00:00",
+  "model_name": "xgboost",
+  "model_registry_version": "local",
+  "decision_threshold": 0.1,
+  "minimum_group_size": 20,
+  "high_risk_gap_threshold": 0.15,
+  "recall_gap_threshold": 0.2,
+  "fairness_features": [
+    "Gender",
+    "AgeGroup",
+    "Department",
+    "JobRole",
+    "MaritalStatus"
+  ],
+  "dimensions": [
+    {
+      "feature": "Gender",
+      "groups": {
+        "Female": {
+          "sample_size": 116,
+          "actual_attrition_rate": 0.13793103448275862,
+          "high_risk_rate": 0.5,
+          "average_probability": 0.15536684045118504,
+          "precision": 0.22413793103448276,
+          "recall": 0.8125,
+          "false_positive_rate": 0.45,
+          "false_negative_rate": 0.1875,
+          "true_positives": 13,
+          "false_positives": 45,
+          "false_negatives": 3,
+          "true_negatives": 55,
+          "sample_warning": false
+        },
+        "Male": {
+          "sample_size": 178,
+          "actual_attrition_rate": 0.17415730337078653,
+          "high_risk_rate": 0.3539325842696629,
+          "average_probability": 0.13649471605384952,
+          "precision": 0.3492063492063492,
+          "recall": 0.7096774193548387,
+          "false_positive_rate": 0.2789115646258503,
+          "false_negative_rate": 0.2903225806451613,
+          "true_positives": 22,
+          "false_positives": 41,
+          "false_negatives": 9,
+          "true_negatives": 106,
+          "sample_warning": false
+        }
+      },
+      "max_high_risk_rate_gap": 0.1460674157303371,
+      "max_recall_gap": 0.10282258064516125,
+      "review_status": "monitor",
+      "sample_warning": false
+    },
+    {
+      "feature": "AgeGroup",
+      "groups": {
+        "30-39": {
+          "sample_size": 125,
+          "actual_attrition_rate": 0.112,
+          "high_risk_rate": 0.416,
+          "average_probability": 0.13577010190486907,
+          "precision": 0.25,
+          "recall": 0.9285714285714286,
+          "false_positive_rate": 0.35135135135135137,
+          "false_negative_rate": 0.07142857142857142,
+          "true_positives": 13,
+          "false_positives": 39,
+          "false_negatives": 1,
+          "true_negatives": 72,
+          "sample_warning": false
+        },
+        "40-49": {
+          "sample_size": 67,
+          "actual_attrition_rate": 0.11940298507462686,
+          "high_risk_rate": 0.26865671641791045,
+          "average_probability": 0.09448088702759636,
+          "precision": 0.3333333333333333,
+          "recall": 0.75,
+          "false_positive_rate": 0.2033898305084746,
+          "false_negative_rate": 0.25,
+          "true_positives": 6,
+          "false_positives": 12,
+          "false_negatives": 2,
+          "true_negatives": 47,
+          "sample_warning": false
+        },
+        "50+": {
+          "sample_size": 34,
+          "actual_attrition_rate": 0.23529411764705882,
+          "high_risk_rate": 0.29411764705882354,
+          "average_probability": 0.08492501014295746,
+          "precision": 0.4,
+          "recall": 0.5,
+          "false_positive_rate": 0.23076923076923078,
+          "false_negative_rate": 0.5,
+          "true_positives": 4,
+          "false_positives": 6,
+          "false_negatives": 4,
+          "true_negatives": 20,
+          "sample_warning": false
+        },
+        "Under 30": {
+          "sample_size": 68,
+          "actual_attrition_rate": 0.25,
+          "high_risk_rate": 0.6029411764705882,
+          "average_probability": 0.23720118288389025,
+          "precision": 0.2926829268292683,
+          "recall": 0.7058823529411765,
+          "false_positive_rate": 0.5686274509803921,
+          "false_negative_rate": 0.29411764705882354,
+          "true_positives": 12,
+          "false_positives": 29,
+          "false_negatives": 5,
+          "true_negatives": 22,
+          "sample_warning": false
+        }
+      },
+      "max_high_risk_rate_gap": 0.33428446005267776,
+      "max_recall_gap": 0.4285714285714286,
+      "review_status": "needs_review",
+      "sample_warning": false
+    },
+    {
+      "feature": "Department",
+      "groups": {
+        "Human Resources": {
+          "sample_size": 15,
+          "actual_attrition_rate": 0.13333333333333333,
+          "high_risk_rate": 0.3333333333333333,
+          "average_probability": 0.1181642363468806,
+          "precision": 0.2,
+          "recall": 0.5,
+          "false_positive_rate": 0.3076923076923077,
+          "false_negative_rate": 0.5,
+          "true_positives": 1,
+          "false_positives": 4,
+          "false_negatives": 1,
+          "true_negatives": 9,
+          "sample_warning": true
+        },
+        "Research & Development": {
+          "sample_size": 197,
+          "actual_attrition_rate": 0.14720812182741116,
+          "high_risk_rate": 0.3401015228426396,
+          "average_probability": 0.1204835438089171,
+          "precision": 0.26865671641791045,
+          "recall": 0.6206896551724138,
+          "false_positive_rate": 0.2916666666666667,
+          "false_negative_rate": 0.3793103448275862,
+          "true_positives": 18,
+          "false_positives": 49,
+          "false_negatives": 11,
+          "true_negatives": 119,
+          "sample_warning": false
+        },
+        "Sales": {
+          "sample_size": 82,
+          "actual_attrition_rate": 0.1951219512195122,
+          "high_risk_rate": 0.5975609756097561,
+          "average_probability": 0.20501086919954636,
+          "precision": 0.32653061224489793,
+          "recall": 1.0,
+          "false_positive_rate": 0.5,
+          "false_negative_rate": 0.0,
+          "true_positives": 16,
+          "false_positives": 33,
+          "false_negatives": 0,
+          "true_negatives": 33,
+          "sample_warning": false
+        }
+      },
+      "max_high_risk_rate_gap": 0.25745945276711646,
+      "max_recall_gap": 0.3793103448275862,
+      "review_status": "needs_review",
+      "sample_warning": true
+    },
+    {
+      "feature": "JobRole",
+      "groups": {
+        "Healthcare Representative": {
+          "sample_size": 23,
+          "actual_attrition_rate": 0.13043478260869565,
+          "high_risk_rate": 0.2608695652173913,
+          "average_probability": 0.09660936325140622,
+          "precision": 0.16666666666666666,
+          "recall": 0.3333333333333333,
+          "false_positive_rate": 0.25,
+          "false_negative_rate": 0.6666666666666666,
+          "true_positives": 1,
+          "false_positives": 5,
+          "false_negatives": 2,
+          "true_negatives": 15,
+          "sample_warning": false
+        },
+        "Human Resources": {
+          "sample_size": 11,
+          "actual_attrition_rate": 0.18181818181818182,
+          "high_risk_rate": 0.45454545454545453,
+          "average_probability": 0.1438174176622521,
+          "precision": 0.2,
+          "recall": 0.5,
+          "false_positive_rate": 0.4444444444444444,
+          "false_negative_rate": 0.5,
+          "true_positives": 1,
+          "false_positives": 4,
+          "false_negatives": 1,
+          "true_negatives": 5,
+          "sample_warning": true
+        },
+        "Laboratory Technician": {
+          "sample_size": 44,
+          "actual_attrition_rate": 0.09090909090909091,
+          "high_risk_rate": 0.5227272727272727,
+          "average_probability": 0.15943351675840942,
+          "precision": 0.17391304347826086,
+          "recall": 1.0,
+          "false_positive_rate": 0.475,
+          "false_negative_rate": 0.0,
+          "true_positives": 4,
+          "false_positives": 19,
+          "false_negatives": 0,
+          "true_negatives": 21,
+          "sample_warning": false
+        },
+        "Manager": {
+          "sample_size": 19,
+          "actual_attrition_rate": 0.0,
+          "high_risk_rate": 0.0,
+          "average_probability": 0.044749501112260316,
+          "precision": 0.0,
+          "recall": 0.0,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.0,
+          "true_positives": 0,
+          "false_positives": 0,
+          "false_negatives": 0,
+          "true_negatives": 19,
+          "sample_warning": true
+        },
+        "Manufacturing Director": {
+          "sample_size": 32,
+          "actual_attrition_rate": 0.09375,
+          "high_risk_rate": 0.21875,
+          "average_probability": 0.08134266640990973,
+          "precision": 0.14285714285714285,
+          "recall": 0.3333333333333333,
+          "false_positive_rate": 0.20689655172413793,
+          "false_negative_rate": 0.6666666666666666,
+          "true_positives": 1,
+          "false_positives": 6,
+          "false_negatives": 2,
+          "true_negatives": 23,
+          "sample_warning": false
+        },
+        "Research Director": {
+          "sample_size": 17,
+          "actual_attrition_rate": 0.058823529411764705,
+          "high_risk_rate": 0.11764705882352941,
+          "average_probability": 0.05191063059165197,
+          "precision": 0.0,
+          "recall": 0.0,
+          "false_positive_rate": 0.125,
+          "false_negative_rate": 1.0,
+          "true_positives": 0,
+          "false_positives": 2,
+          "false_negatives": 1,
+          "true_negatives": 14,
+          "sample_warning": true
+        },
+        "Research Scientist": {
+          "sample_size": 72,
+          "actual_attrition_rate": 0.25,
+          "high_risk_rate": 0.4027777777777778,
+          "average_probability": 0.14789723108212152,
+          "precision": 0.41379310344827586,
+          "recall": 0.6666666666666666,
+          "false_positive_rate": 0.3148148148148148,
+          "false_negative_rate": 0.3333333333333333,
+          "true_positives": 12,
+          "false_positives": 17,
+          "false_negatives": 6,
+          "true_negatives": 37,
+          "sample_warning": false
+        },
+        "Sales Executive": {
+          "sample_size": 53,
+          "actual_attrition_rate": 0.1509433962264151,
+          "high_risk_rate": 0.5471698113207547,
+          "average_probability": 0.15804547725139922,
+          "precision": 0.27586206896551724,
+          "recall": 1.0,
+          "false_positive_rate": 0.4666666666666667,
+          "false_negative_rate": 0.0,
+          "true_positives": 8,
+          "false_positives": 21,
+          "false_negatives": 0,
+          "true_negatives": 24,
+          "sample_warning": false
+        },
+        "Sales Representative": {
+          "sample_size": 23,
+          "actual_attrition_rate": 0.34782608695652173,
+          "high_risk_rate": 0.8695652173913043,
+          "average_probability": 0.3538623376061087,
+          "precision": 0.4,
+          "recall": 1.0,
+          "false_positive_rate": 0.8,
+          "false_negative_rate": 0.0,
+          "true_positives": 8,
+          "false_positives": 12,
+          "false_negatives": 0,
+          "true_negatives": 3,
+          "sample_warning": false
+        }
+      },
+      "max_high_risk_rate_gap": 0.6508152173913043,
+      "max_recall_gap": 0.6666666666666667,
+      "review_status": "needs_review",
+      "sample_warning": true
+    },
+    {
+      "feature": "MaritalStatus",
+      "groups": {
+        "Divorced": {
+          "sample_size": 64,
+          "actual_attrition_rate": 0.0625,
+          "high_risk_rate": 0.390625,
+          "average_probability": 0.12180833719321527,
+          "precision": 0.16,
+          "recall": 1.0,
+          "false_positive_rate": 0.35,
+          "false_negative_rate": 0.0,
+          "true_positives": 4,
+          "false_positives": 21,
+          "false_negatives": 0,
+          "true_negatives": 39,
+          "sample_warning": false
+        },
+        "Married": {
+          "sample_size": 133,
+          "actual_attrition_rate": 0.13533834586466165,
+          "high_risk_rate": 0.3458646616541353,
+          "average_probability": 0.11764934675810032,
+          "precision": 0.2608695652173913,
+          "recall": 0.6666666666666666,
+          "false_positive_rate": 0.2956521739130435,
+          "false_negative_rate": 0.3333333333333333,
+          "true_positives": 12,
+          "false_positives": 34,
+          "false_negatives": 6,
+          "true_negatives": 81,
+          "sample_warning": false
+        },
+        "Single": {
+          "sample_size": 97,
+          "actual_attrition_rate": 0.25773195876288657,
+          "high_risk_rate": 0.5154639175257731,
+          "average_probability": 0.1945929510384491,
+          "precision": 0.38,
+          "recall": 0.76,
+          "false_positive_rate": 0.4305555555555556,
+          "false_negative_rate": 0.24,
+          "true_positives": 19,
+          "false_positives": 31,
+          "false_negatives": 6,
+          "true_negatives": 41,
+          "sample_warning": false
+        }
+      },
+      "max_high_risk_rate_gap": 0.16959925587163782,
+      "max_recall_gap": 0.33333333333333337,
+      "review_status": "needs_review",
+      "sample_warning": false
+    }
+  ],
+  "flagged_dimensions": [
+    {
+      "feature": "AgeGroup",
+      "max_high_risk_rate_gap": 0.33428446005267776,
+      "max_recall_gap": 0.4285714285714286,
+      "review_status": "needs_review",
+      "sample_warning": false
+    },
+    {
+      "feature": "Department",
+      "max_high_risk_rate_gap": 0.25745945276711646,
+      "max_recall_gap": 0.3793103448275862,
+      "review_status": "needs_review",
+      "sample_warning": true
+    },
+    {
+      "feature": "JobRole",
+      "max_high_risk_rate_gap": 0.6508152173913043,
+      "max_recall_gap": 0.6666666666666667,
+      "review_status": "needs_review",
+      "sample_warning": true
+    },
+    {
+      "feature": "MaritalStatus",
+      "max_high_risk_rate_gap": 0.16959925587163782,
+      "max_recall_gap": 0.33333333333333337,
+      "review_status": "needs_review",
+      "sample_warning": false
+    }
+  ],
+  "flagged_dimensions_table": [
+    {
+      "feature": "Gender",
+      "max_high_risk_rate_gap": 0.1460674157303371,
+      "max_recall_gap": 0.10282258064516125,
+      "review_status": "monitor",
+      "sample_warning": false
+    },
+    {
+      "feature": "AgeGroup",
+      "max_high_risk_rate_gap": 0.33428446005267776,
+      "max_recall_gap": 0.4285714285714286,
+      "review_status": "needs_review",
+      "sample_warning": false
+    },
+    {
+      "feature": "Department",
+      "max_high_risk_rate_gap": 0.25745945276711646,
+      "max_recall_gap": 0.3793103448275862,
+      "review_status": "needs_review",
+      "sample_warning": true
+    },
+    {
+      "feature": "JobRole",
+      "max_high_risk_rate_gap": 0.6508152173913043,
+      "max_recall_gap": 0.6666666666666667,
+      "review_status": "needs_review",
+      "sample_warning": true
+    },
+    {
+      "feature": "MaritalStatus",
+      "max_high_risk_rate_gap": 0.16959925587163782,
+      "max_recall_gap": 0.33333333333333337,
+      "review_status": "needs_review",
+      "sample_warning": false
+    }
+  ],
+  "ethics_note": "This is a public demo dataset. Fairness diagnostics are for governance review only and must not be used for automated employment decisions."
+}

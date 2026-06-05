@@ -1,0 +1,91 @@
+{
+  "generated_at_utc": "2026-06-05T14:07:32.873463+00:00",
+  "scenario": "hiring_mix",
+  "drift_score": 0.044818229109795826,
+  "threshold": 0.3,
+  "max_feature_drift_score": 0.33673469387755106,
+  "features_above_threshold": [
+    "Department"
+  ],
+  "features_above_threshold_count": 1,
+  "status": "Review Required",
+  "retraining_required": true,
+  "feature_drift_scores": {
+    "Age": 0.013532420289767796,
+    "BusinessTravel": 0.027210884353741506,
+    "DailyRate": 0.0062558142710461735,
+    "Department": 0.33673469387755106,
+    "DistanceFromHome": 0.033730761213313316,
+    "Education": 0.01048210334145091,
+    "EducationField": 0.070578231292517,
+    "EnvironmentSatisfaction": 0.0075534135040425734,
+    "Gender": 0.006802721088435382,
+    "HourlyRate": 0.03201268418534966,
+    "JobInvolvement": 0.017328199698535416,
+    "JobLevel": 0.1968374933206374,
+    "JobRole": 0.10459183673469388,
+    "JobSatisfaction": 0.013787166536157518,
+    "MaritalStatus": 0.012755102040816327,
+    "MonthlyIncome": 0.014723217322423618,
+    "MonthlyRate": 0.01788103904289125,
+    "NumCompaniesWorked": 0.00011406213475012822,
+    "OverTime": 0.03061224489795919,
+    "PercentSalaryHike": 0.013719451486521312,
+    "PerformanceRating": 0.016348403516636145,
+    "RelationshipSatisfaction": 0.04094926221002409,
+    "StockOptionLevel": 0.006034873704565874,
+    "TotalWorkingYears": 0.20445918394123144,
+    "TrainingTimesLastYear": 0.05191631273368608,
+    "WorkLifeBalance": 0.00829244785548807,
+    "YearsAtCompany": 0.01150740782147301,
+    "YearsInCurrentRole": 0.0009533001087554108,
+    "YearsSinceLastPromotion": 0.00255756204316866,
+    "YearsWithCurrManager": 0.03428457872624478
+  },
+  "top_drifted_features": [
+    [
+      "Department",
+      0.33673469387755106
+    ],
+    [
+      "TotalWorkingYears",
+      0.20445918394123144
+    ],
+    [
+      "JobLevel",
+      0.1968374933206374
+    ],
+    [
+      "JobRole",
+      0.10459183673469388
+    ],
+    [
+      "EducationField",
+      0.070578231292517
+    ],
+    [
+      "TrainingTimesLastYear",
+      0.05191631273368608
+    ],
+    [
+      "RelationshipSatisfaction",
+      0.04094926221002409
+    ],
+    [
+      "YearsWithCurrManager",
+      0.03428457872624478
+    ],
+    [
+      "DistanceFromHome",
+      0.033730761213313316
+    ],
+    [
+      "HourlyRate",
+      0.03201268418534966
+    ]
+  ],
+  "reports": {
+    "data_drift_report": "reports\\drift_reports\\data_drift_report_20260605T140730Z.html",
+    "target_drift_report": "reports\\drift_reports\\target_drift_report_20260605T140730Z.html"
+  }
+}

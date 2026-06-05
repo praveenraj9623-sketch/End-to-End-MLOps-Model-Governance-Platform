@@ -1,0 +1,1761 @@
+{
+  "project_root": "C:\\Users\\admin\\Desktop\\End-to-End MLOps & Model Governance Platform",
+  "steps": [
+    {
+      "name": "ingestion",
+      "status": "success"
+    },
+    {
+      "name": "validation",
+      "status": "success"
+    },
+    {
+      "name": "feature_engineering",
+      "status": "success"
+    },
+    {
+      "name": "training",
+      "status": "success"
+    },
+    {
+      "name": "evaluation",
+      "status": "success"
+    },
+    {
+      "name": "drift_detection",
+      "status": "success"
+    },
+    {
+      "name": "fairness",
+      "status": "success"
+    },
+    {
+      "name": "model_card",
+      "status": "success"
+    }
+  ],
+  "ingestion": {
+    "dataset_path": "data\\raw\\hr_attrition.csv",
+    "rows": 1470,
+    "columns": 35,
+    "critical_columns_missing": [],
+    "checks_total": 112,
+    "checks_failed": 0,
+    "checks_warned": 0,
+    "generated_at_utc": "2026-06-05T09:11:55.243935+00:00"
+  },
+  "validation": {
+    "generated_at_utc": "2026-06-05T09:11:55.251933+00:00",
+    "checks": {
+      "schema": {
+        "status": "pass",
+        "expected_column_count": 35,
+        "observed_column_count": 35,
+        "missing_columns": [],
+        "extra_columns": [],
+        "target_values": [
+          "No",
+          "Yes"
+        ],
+        "valid_target": true
+      },
+      "missing_values": {
+        "status": "pass",
+        "threshold": 0.2,
+        "missing_percentages": {
+          "Age": 0.0,
+          "Attrition": 0.0,
+          "BusinessTravel": 0.0,
+          "DailyRate": 0.0,
+          "Department": 0.0,
+          "DistanceFromHome": 0.0,
+          "Education": 0.0,
+          "EducationField": 0.0,
+          "EmployeeCount": 0.0,
+          "EmployeeNumber": 0.0,
+          "EnvironmentSatisfaction": 0.0,
+          "Gender": 0.0,
+          "HourlyRate": 0.0,
+          "JobInvolvement": 0.0,
+          "JobLevel": 0.0,
+          "JobRole": 0.0,
+          "JobSatisfaction": 0.0,
+          "MaritalStatus": 0.0,
+          "MonthlyIncome": 0.0,
+          "MonthlyRate": 0.0,
+          "NumCompaniesWorked": 0.0,
+          "Over18": 0.0,
+          "OverTime": 0.0,
+          "PercentSalaryHike": 0.0,
+          "PerformanceRating": 0.0,
+          "RelationshipSatisfaction": 0.0,
+          "StandardHours": 0.0,
+          "StockOptionLevel": 0.0,
+          "TotalWorkingYears": 0.0,
+          "TrainingTimesLastYear": 0.0,
+          "WorkLifeBalance": 0.0,
+          "YearsAtCompany": 0.0,
+          "YearsInCurrentRole": 0.0,
+          "YearsSinceLastPromotion": 0.0,
+          "YearsWithCurrManager": 0.0
+        },
+        "columns_above_threshold": []
+      },
+      "value_ranges": {
+        "status": "pass",
+        "columns": {
+          "Age": {
+            "expected_min": 18,
+            "expected_max": 65,
+            "observed_min": 18.0,
+            "observed_max": 60.0,
+            "status": "pass"
+          },
+          "DailyRate": {
+            "expected_min": 100,
+            "expected_max": 1600,
+            "observed_min": 102.0,
+            "observed_max": 1499.0,
+            "status": "pass"
+          },
+          "DistanceFromHome": {
+            "expected_min": 1,
+            "expected_max": 30,
+            "observed_min": 1.0,
+            "observed_max": 29.0,
+            "status": "pass"
+          },
+          "Education": {
+            "expected_min": 1,
+            "expected_max": 5,
+            "observed_min": 1.0,
+            "observed_max": 5.0,
+            "status": "pass"
+          },
+          "EmployeeCount": {
+            "expected_min": 1,
+            "expected_max": 1,
+            "observed_min": 1.0,
+            "observed_max": 1.0,
+            "status": "pass"
+          },
+          "EnvironmentSatisfaction": {
+            "expected_min": 1,
+            "expected_max": 4,
+            "observed_min": 1.0,
+            "observed_max": 4.0,
+            "status": "pass"
+          },
+          "HourlyRate": {
+            "expected_min": 30,
+            "expected_max": 100,
+            "observed_min": 30.0,
+            "observed_max": 100.0,
+            "status": "pass"
+          },
+          "JobInvolvement": {
+            "expected_min": 1,
+            "expected_max": 4,
+            "observed_min": 1.0,
+            "observed_max": 4.0,
+            "status": "pass"
+          },
+          "JobLevel": {
+            "expected_min": 1,
+            "expected_max": 5,
+            "observed_min": 1.0,
+            "observed_max": 5.0,
+            "status": "pass"
+          },
+          "JobSatisfaction": {
+            "expected_min": 1,
+            "expected_max": 4,
+            "observed_min": 1.0,
+            "observed_max": 4.0,
+            "status": "pass"
+          },
+          "MonthlyIncome": {
+            "expected_min": 1000,
+            "expected_max": 25000,
+            "observed_min": 1009.0,
+            "observed_max": 19999.0,
+            "status": "pass"
+          },
+          "MonthlyRate": {
+            "expected_min": 2000,
+            "expected_max": 27000,
+            "observed_min": 2094.0,
+            "observed_max": 26999.0,
+            "status": "pass"
+          },
+          "NumCompaniesWorked": {
+            "expected_min": 0,
+            "expected_max": 10,
+            "observed_min": 0.0,
+            "observed_max": 9.0,
+            "status": "pass"
+          },
+          "PercentSalaryHike": {
+            "expected_min": 10,
+            "expected_max": 25,
+            "observed_min": 11.0,
+            "observed_max": 25.0,
+            "status": "pass"
+          },
+          "PerformanceRating": {
+            "expected_min": 3,
+            "expected_max": 4,
+            "observed_min": 3.0,
+            "observed_max": 4.0,
+            "status": "pass"
+          },
+          "RelationshipSatisfaction": {
+            "expected_min": 1,
+            "expected_max": 4,
+            "observed_min": 1.0,
+            "observed_max": 4.0,
+            "status": "pass"
+          },
+          "StandardHours": {
+            "expected_min": 80,
+            "expected_max": 80,
+            "observed_min": 80.0,
+            "observed_max": 80.0,
+            "status": "pass"
+          },
+          "StockOptionLevel": {
+            "expected_min": 0,
+            "expected_max": 3,
+            "observed_min": 0.0,
+            "observed_max": 3.0,
+            "status": "pass"
+          },
+          "TotalWorkingYears": {
+            "expected_min": 0,
+            "expected_max": 45,
+            "observed_min": 0.0,
+            "observed_max": 40.0,
+            "status": "pass"
+          },
+          "TrainingTimesLastYear": {
+            "expected_min": 0,
+            "expected_max": 6,
+            "observed_min": 0.0,
+            "observed_max": 6.0,
+            "status": "pass"
+          },
+          "WorkLifeBalance": {
+            "expected_min": 1,
+            "expected_max": 4,
+            "observed_min": 1.0,
+            "observed_max": 4.0,
+            "status": "pass"
+          },
+          "YearsAtCompany": {
+            "expected_min": 0,
+            "expected_max": 40,
+            "observed_min": 0.0,
+            "observed_max": 40.0,
+            "status": "pass"
+          },
+          "YearsInCurrentRole": {
+            "expected_min": 0,
+            "expected_max": 18,
+            "observed_min": 0.0,
+            "observed_max": 18.0,
+            "status": "pass"
+          },
+          "YearsSinceLastPromotion": {
+            "expected_min": 0,
+            "expected_max": 15,
+            "observed_min": 0.0,
+            "observed_max": 15.0,
+            "status": "pass"
+          },
+          "YearsWithCurrManager": {
+            "expected_min": 0,
+            "expected_max": 17,
+            "observed_min": 0.0,
+            "observed_max": 17.0,
+            "status": "pass"
+          }
+        },
+        "columns_outside_expected_range": []
+      },
+      "cardinality": {
+        "status": "pass",
+        "columns": {
+          "Attrition": {
+            "unique_count": 2,
+            "observed_values": [
+              "No",
+              "Yes"
+            ],
+            "unexpected_values": [],
+            "status": "pass"
+          },
+          "BusinessTravel": {
+            "unique_count": 3,
+            "observed_values": [
+              "Non-Travel",
+              "Travel_Frequently",
+              "Travel_Rarely"
+            ],
+            "unexpected_values": [],
+            "status": "pass"
+          },
+          "Department": {
+            "unique_count": 3,
+            "observed_values": [
+              "Human Resources",
+              "Research & Development",
+              "Sales"
+            ],
+            "unexpected_values": [],
+            "status": "pass"
+          },
+          "EducationField": {
+            "unique_count": 6,
+            "observed_values": [
+              "Human Resources",
+              "Life Sciences",
+              "Marketing",
+              "Medical",
+              "Other",
+              "Technical Degree"
+            ],
+            "unexpected_values": [],
+            "status": "pass"
+          },
+          "Gender": {
+            "unique_count": 2,
+            "observed_values": [
+              "Female",
+              "Male"
+            ],
+            "unexpected_values": [],
+            "status": "pass"
+          },
+          "JobRole": {
+            "unique_count": 9,
+            "observed_values": [
+              "Healthcare Representative",
+              "Human Resources",
+              "Laboratory Technician",
+              "Manager",
+              "Manufacturing Director",
+              "Research Director",
+              "Research Scientist",
+              "Sales Executive",
+              "Sales Representative"
+            ],
+            "unexpected_values": [],
+            "status": "pass"
+          },
+          "MaritalStatus": {
+            "unique_count": 3,
+            "observed_values": [
+              "Divorced",
+              "Married",
+              "Single"
+            ],
+            "unexpected_values": [],
+            "status": "pass"
+          },
+          "Over18": {
+            "unique_count": 1,
+            "observed_values": [
+              "Y"
+            ],
+            "unexpected_values": [],
+            "status": "pass"
+          },
+          "OverTime": {
+            "unique_count": 2,
+            "observed_values": [
+              "No",
+              "Yes"
+            ],
+            "unexpected_values": [],
+            "status": "pass"
+          }
+        },
+        "columns_with_unexpected_categories": []
+      }
+    },
+    "summary": {
+      "overall_status": "pass",
+      "check_count": 4,
+      "failed_checks": 0,
+      "warning_checks": 0
+    }
+  },
+  "feature_engineering": {
+    "processed_path": "data\\processed\\attrition_features.csv",
+    "train_rows": 1176,
+    "test_rows": 294,
+    "feature_count": 51,
+    "excluded_features": [
+      "EmployeeNumber",
+      "EmployeeCount",
+      "StandardHours",
+      "Over18"
+    ],
+    "scaler_path": "models\\scaler.joblib",
+    "preprocessing_path": "models\\preprocessing.joblib",
+    "reference_path": "data\\reference\\reference_dataset.csv"
+  },
+  "training": {
+    "champion": {
+      "model_name": "xgboost",
+      "metrics": {
+        "accuracy": 0.6666666666666666,
+        "auc": 0.7528641571194763,
+        "pr_auc": 0.45362312094610435,
+        "average_precision": 0.45362312094610435,
+        "f1": 0.41666666666666663,
+        "precision": 0.2892561983471074,
+        "recall": 0.7446808510638298,
+        "brier_score": 0.11524485722224584,
+        "business_cost": 309000,
+        "thresholds": {
+          "best_f1_threshold": 0.15,
+          "best_recall_threshold": 0.05,
+          "best_business_cost_threshold": 0.1,
+          "selected_threshold": 0.1,
+          "selected_business_cost": 309000,
+          "selected_precision": 0.2892561983471074,
+          "selected_recall": 0.7446808510638298,
+          "selected_f1": 0.41666666666666663,
+          "selected_confusion_matrix": {
+            "true_negatives": 161,
+            "false_positives": 86,
+            "false_negatives": 12,
+            "true_positives": 35
+          }
+        },
+        "threshold_table": [
+          {
+            "model_name": "xgboost",
+            "threshold": 0.05,
+            "accuracy": 0.4013605442176871,
+            "precision": 0.19718309859154928,
+            "recall": 0.8936170212765957,
+            "f1": 0.3230769230769231,
+            "true_negatives": 76,
+            "false_positives": 171,
+            "false_negatives": 5,
+            "true_positives": 42,
+            "business_cost": 331500
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.1,
+            "accuracy": 0.6666666666666666,
+            "precision": 0.2892561983471074,
+            "recall": 0.7446808510638298,
+            "f1": 0.41666666666666663,
+            "true_negatives": 161,
+            "false_positives": 86,
+            "false_negatives": 12,
+            "true_positives": 35,
+            "business_cost": 309000
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.15,
+            "accuracy": 0.7585034013605442,
+            "precision": 0.35,
+            "recall": 0.5957446808510638,
+            "f1": 0.4409448818897637,
+            "true_negatives": 195,
+            "false_positives": 52,
+            "false_negatives": 19,
+            "true_positives": 28,
+            "business_cost": 363000
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.2,
+            "accuracy": 0.7789115646258503,
+            "precision": 0.36363636363636365,
+            "recall": 0.5106382978723404,
+            "f1": 0.4247787610619469,
+            "true_negatives": 205,
+            "false_positives": 42,
+            "false_negatives": 23,
+            "true_positives": 24,
+            "business_cost": 408000
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.25,
+            "accuracy": 0.782312925170068,
+            "precision": 0.34545454545454546,
+            "recall": 0.40425531914893614,
+            "f1": 0.37254901960784315,
+            "true_negatives": 211,
+            "false_positives": 36,
+            "false_negatives": 28,
+            "true_positives": 19,
+            "business_cost": 474000
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.3,
+            "accuracy": 0.826530612244898,
+            "precision": 0.4523809523809524,
+            "recall": 0.40425531914893614,
+            "f1": 0.4269662921348315,
+            "true_negatives": 224,
+            "false_positives": 23,
+            "false_negatives": 28,
+            "true_positives": 19,
+            "business_cost": 454500
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.35,
+            "accuracy": 0.8367346938775511,
+            "precision": 0.4827586206896552,
+            "recall": 0.2978723404255319,
+            "f1": 0.3684210526315789,
+            "true_negatives": 232,
+            "false_positives": 15,
+            "false_negatives": 33,
+            "true_positives": 14,
+            "business_cost": 517500
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.4,
+            "accuracy": 0.8401360544217688,
+            "precision": 0.5,
+            "recall": 0.2553191489361702,
+            "f1": 0.3380281690140845,
+            "true_negatives": 235,
+            "false_positives": 12,
+            "false_negatives": 35,
+            "true_positives": 12,
+            "business_cost": 543000
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.45,
+            "accuracy": 0.8503401360544217,
+            "precision": 0.5714285714285714,
+            "recall": 0.2553191489361702,
+            "f1": 0.35294117647058826,
+            "true_negatives": 238,
+            "false_positives": 9,
+            "false_negatives": 35,
+            "true_positives": 12,
+            "business_cost": 538500
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.5,
+            "accuracy": 0.8537414965986394,
+            "precision": 0.6666666666666666,
+            "recall": 0.1702127659574468,
+            "f1": 0.2711864406779661,
+            "true_negatives": 243,
+            "false_positives": 4,
+            "false_negatives": 39,
+            "true_positives": 8,
+            "business_cost": 591000
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.55,
+            "accuracy": 0.8537414965986394,
+            "precision": 0.7,
+            "recall": 0.14893617021276595,
+            "f1": 0.24561403508771928,
+            "true_negatives": 244,
+            "false_positives": 3,
+            "false_negatives": 40,
+            "true_positives": 7,
+            "business_cost": 604500
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.6,
+            "accuracy": 0.8605442176870748,
+            "precision": 0.875,
+            "recall": 0.14893617021276595,
+            "f1": 0.25454545454545446,
+            "true_negatives": 246,
+            "false_positives": 1,
+            "false_negatives": 40,
+            "true_positives": 7,
+            "business_cost": 601500
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.65,
+            "accuracy": 0.8537414965986394,
+            "precision": 0.8333333333333334,
+            "recall": 0.10638297872340426,
+            "f1": 0.18867924528301885,
+            "true_negatives": 246,
+            "false_positives": 1,
+            "false_negatives": 42,
+            "true_positives": 5,
+            "business_cost": 631500
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.7,
+            "accuracy": 0.8537414965986394,
+            "precision": 0.8333333333333334,
+            "recall": 0.10638297872340426,
+            "f1": 0.18867924528301885,
+            "true_negatives": 246,
+            "false_positives": 1,
+            "false_negatives": 42,
+            "true_positives": 5,
+            "business_cost": 631500
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.75,
+            "accuracy": 0.8401360544217688,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_negatives": 247,
+            "false_positives": 0,
+            "false_negatives": 47,
+            "true_positives": 0,
+            "business_cost": 705000
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.8,
+            "accuracy": 0.8401360544217688,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_negatives": 247,
+            "false_positives": 0,
+            "false_negatives": 47,
+            "true_positives": 0,
+            "business_cost": 705000
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.85,
+            "accuracy": 0.8401360544217688,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_negatives": 247,
+            "false_positives": 0,
+            "false_negatives": 47,
+            "true_positives": 0,
+            "business_cost": 705000
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.9,
+            "accuracy": 0.8401360544217688,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_negatives": 247,
+            "false_positives": 0,
+            "false_negatives": 47,
+            "true_positives": 0,
+            "business_cost": 705000
+          },
+          {
+            "model_name": "xgboost",
+            "threshold": 0.95,
+            "accuracy": 0.8401360544217688,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "true_negatives": 247,
+            "false_positives": 0,
+            "false_negatives": 47,
+            "true_positives": 0,
+            "business_cost": 705000
+          }
+        ]
+      },
+      "run_id": null,
+      "model_registry_version": null,
+      "selection_rule": "lowest business_cost, then higher pr_auc, then higher recall"
+    },
+    "candidates": [
+      {
+        "model_name": "xgboost",
+        "auc": 0.7528641571194763,
+        "pr_auc": 0.45362312094610435,
+        "average_precision": 0.45362312094610435,
+        "f1": 0.40609137055837563,
+        "precision": 0.26666666666666666,
+        "recall": 0.851063829787234,
+        "business_cost": 270000,
+        "brier_score": 0.13711715834001734,
+        "selected_threshold": 0.2,
+        "run_id": null
+      },
+      {
+        "model_name": "logistic_regression",
+        "auc": 0.7880093031268843,
+        "pr_auc": 0.5379226781315857,
+        "average_precision": 0.5379226781315857,
+        "f1": 0.41052631578947363,
+        "precision": 0.2727272727272727,
+        "recall": 0.8297872340425532,
+        "business_cost": 276000,
+        "brier_score": 0.16076758409732436,
+        "selected_threshold": 0.25,
+        "run_id": null
+      },
+      {
+        "model_name": "lightgbm",
+        "auc": 0.7091050047377034,
+        "pr_auc": 0.4265552009648433,
+        "average_precision": 0.4265552009648433,
+        "f1": 0.31851851851851853,
+        "precision": 0.19282511210762332,
+        "recall": 0.9148936170212766,
+        "business_cost": 330000,
+        "brier_score": 0.13793676992104098,
+        "selected_threshold": 0.05,
+        "run_id": null
+      }
+    ],
+    "threshold_metrics_path": "reports\\performance_logs\\threshold_metrics.csv",
+    "candidate_comparison_path": "reports\\performance_logs\\candidate_model_comparison.csv",
+    "calibration": {
+      "method": "sigmoid",
+      "calibrated": true,
+      "brier_score_before": 0.13711715834001734,
+      "brier_score_after": 0.11524485722224584,
+      "status": "acceptable",
+      "plot_path": "reports\\performance_logs\\calibration_curve.png"
+    }
+  },
+  "evaluation": {
+    "classification": {
+      "accuracy": 0.6666666666666666,
+      "auc": 0.7528641571194763,
+      "pr_auc": 0.45362312094610435,
+      "average_precision": 0.45362312094610435,
+      "brier_score": 0.11524485722224584,
+      "f1": 0.41666666666666663,
+      "precision": 0.2892561983471074,
+      "recall": 0.7446808510638298,
+      "decision_threshold": 0.1,
+      "classification_report": {
+        "0": {
+          "precision": 0.930635838150289,
+          "recall": 0.6518218623481782,
+          "f1-score": 0.7666666666666668,
+          "support": 247.0
+        },
+        "1": {
+          "precision": 0.2892561983471074,
+          "recall": 0.7446808510638298,
+          "f1-score": 0.41666666666666663,
+          "support": 47.0
+        },
+        "accuracy": 0.6666666666666666,
+        "macro avg": {
+          "precision": 0.6099460182486982,
+          "recall": 0.698251356706004,
+          "f1-score": 0.5916666666666668,
+          "support": 294.0
+        },
+        "weighted avg": {
+          "precision": 0.8281023583178077,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.7107142857142859,
+          "support": 294.0
+        }
+      }
+    },
+    "shap": {
+      "shap_summary_plot": "reports\\shap_reports\\xgboost_evaluation_shap_summary.png"
+    },
+    "confusion_matrix": {
+      "confusion_matrix_plot": "reports\\performance_logs\\confusion_matrix.png",
+      "confusion_matrix": [
+        [
+          161,
+          86
+        ],
+        [
+          12,
+          35
+        ]
+      ]
+    },
+    "business": {
+      "true_negatives": 161,
+      "false_positives": 86,
+      "false_negatives": 12,
+      "true_positives": 35,
+      "decision_threshold": 0.1,
+      "false_negative_cost_usd": 15000,
+      "false_positive_cost_usd": 1500,
+      "missed_attrition_cost_usd": 180000,
+      "unnecessary_intervention_cost_usd": 129000,
+      "estimated_total_error_cost_usd": 309000,
+      "cost_context": "False negatives represent likely attrition cases HR missed; false positives represent unnecessary retention outreach."
+    }
+  },
+  "drift_detection": {
+    "generated_at_utc": "2026-06-05T09:11:59.844224+00:00",
+    "scenario": "baseline",
+    "drift_score": 0.020441047583057318,
+    "threshold": 0.3,
+    "retraining_required": false,
+    "feature_drift_scores": {
+      "Age": 0.013532420289767796,
+      "BusinessTravel": 0.027210884353741506,
+      "DailyRate": 0.0062558142710461735,
+      "Department": 0.03061224489795916,
+      "DistanceFromHome": 0.033730761213313316,
+      "Education": 0.01048210334145091,
+      "EducationField": 0.070578231292517,
+      "EmployeeCount": 0.0,
+      "EnvironmentSatisfaction": 0.0075534135040425734,
+      "Gender": 0.006802721088435382,
+      "HourlyRate": 0.03201268418534966,
+      "JobInvolvement": 0.017328199698535416,
+      "JobLevel": 0.019216325205444782,
+      "JobRole": 0.10459183673469388,
+      "JobSatisfaction": 0.013787166536157518,
+      "MaritalStatus": 0.012755102040816327,
+      "MonthlyIncome": 0.014723217322423618,
+      "MonthlyRate": 0.01788103904289125,
+      "NumCompaniesWorked": 0.00011406213475012822,
+      "Over18": 0.0,
+      "OverTime": 0.03061224489795919,
+      "PercentSalaryHike": 0.013719451486521312,
+      "PerformanceRating": 0.016348403516636145,
+      "RelationshipSatisfaction": 0.04094926221002409,
+      "StandardHours": 0.0,
+      "StockOptionLevel": 0.006034873704565874,
+      "TotalWorkingYears": 0.018210497983032384,
+      "TrainingTimesLastYear": 0.05191631273368608,
+      "WorkLifeBalance": 0.00829244785548807,
+      "YearsAtCompany": 0.01150740782147301,
+      "YearsInCurrentRole": 0.0009533001087554108,
+      "YearsSinceLastPromotion": 0.00255756204316866,
+      "YearsWithCurrManager": 0.03428457872624478
+    },
+    "top_drifted_features": [
+      [
+        "JobRole",
+        0.10459183673469388
+      ],
+      [
+        "EducationField",
+        0.070578231292517
+      ],
+      [
+        "TrainingTimesLastYear",
+        0.05191631273368608
+      ],
+      [
+        "RelationshipSatisfaction",
+        0.04094926221002409
+      ],
+      [
+        "YearsWithCurrManager",
+        0.03428457872624478
+      ],
+      [
+        "DistanceFromHome",
+        0.033730761213313316
+      ],
+      [
+        "HourlyRate",
+        0.03201268418534966
+      ],
+      [
+        "OverTime",
+        0.03061224489795919
+      ],
+      [
+        "Department",
+        0.03061224489795916
+      ],
+      [
+        "BusinessTravel",
+        0.027210884353741506
+      ]
+    ],
+    "reports": {
+      "data_drift_report": "reports\\drift_reports\\data_drift_report_20260605T091157Z.html",
+      "target_drift_report": "reports\\drift_reports\\target_drift_report_20260605T091157Z.html"
+    }
+  },
+  "fairness": {
+    "generated_at_utc": "2026-06-05T09:11:59.917300+00:00",
+    "model_name": "xgboost",
+    "model_registry_version": "local",
+    "decision_threshold": 0.1,
+    "minimum_group_size": 20,
+    "dimensions": [
+      {
+        "feature": "Gender",
+        "groups": {
+          "Female": {
+            "sample_size": 116,
+            "actual_attrition_rate": 0.13793103448275862,
+            "high_risk_rate": 0.5,
+            "average_probability": 0.15536684045118504,
+            "precision": 0.22413793103448276,
+            "recall": 0.8125,
+            "false_positive_rate": 0.45,
+            "false_negative_rate": 0.1875,
+            "true_positives": 13,
+            "false_positives": 45,
+            "false_negatives": 3,
+            "true_negatives": 55,
+            "sample_warning": false
+          },
+          "Male": {
+            "sample_size": 178,
+            "actual_attrition_rate": 0.17415730337078653,
+            "high_risk_rate": 0.3539325842696629,
+            "average_probability": 0.13649471605384952,
+            "precision": 0.3492063492063492,
+            "recall": 0.7096774193548387,
+            "false_positive_rate": 0.2789115646258503,
+            "false_negative_rate": 0.2903225806451613,
+            "true_positives": 22,
+            "false_positives": 41,
+            "false_negatives": 9,
+            "true_negatives": 106,
+            "sample_warning": false
+          }
+        },
+        "max_high_risk_rate_gap": 0.1460674157303371,
+        "max_recall_gap": 0.10282258064516125
+      },
+      {
+        "feature": "AgeGroup",
+        "groups": {
+          "30-39": {
+            "sample_size": 125,
+            "actual_attrition_rate": 0.112,
+            "high_risk_rate": 0.416,
+            "average_probability": 0.13577010190486907,
+            "precision": 0.25,
+            "recall": 0.9285714285714286,
+            "false_positive_rate": 0.35135135135135137,
+            "false_negative_rate": 0.07142857142857142,
+            "true_positives": 13,
+            "false_positives": 39,
+            "false_negatives": 1,
+            "true_negatives": 72,
+            "sample_warning": false
+          },
+          "40-49": {
+            "sample_size": 67,
+            "actual_attrition_rate": 0.11940298507462686,
+            "high_risk_rate": 0.26865671641791045,
+            "average_probability": 0.09448088702759636,
+            "precision": 0.3333333333333333,
+            "recall": 0.75,
+            "false_positive_rate": 0.2033898305084746,
+            "false_negative_rate": 0.25,
+            "true_positives": 6,
+            "false_positives": 12,
+            "false_negatives": 2,
+            "true_negatives": 47,
+            "sample_warning": false
+          },
+          "50+": {
+            "sample_size": 34,
+            "actual_attrition_rate": 0.23529411764705882,
+            "high_risk_rate": 0.29411764705882354,
+            "average_probability": 0.08492501014295746,
+            "precision": 0.4,
+            "recall": 0.5,
+            "false_positive_rate": 0.23076923076923078,
+            "false_negative_rate": 0.5,
+            "true_positives": 4,
+            "false_positives": 6,
+            "false_negatives": 4,
+            "true_negatives": 20,
+            "sample_warning": false
+          },
+          "Under 30": {
+            "sample_size": 68,
+            "actual_attrition_rate": 0.25,
+            "high_risk_rate": 0.6029411764705882,
+            "average_probability": 0.23720118288389025,
+            "precision": 0.2926829268292683,
+            "recall": 0.7058823529411765,
+            "false_positive_rate": 0.5686274509803921,
+            "false_negative_rate": 0.29411764705882354,
+            "true_positives": 12,
+            "false_positives": 29,
+            "false_negatives": 5,
+            "true_negatives": 22,
+            "sample_warning": false
+          }
+        },
+        "max_high_risk_rate_gap": 0.33428446005267776,
+        "max_recall_gap": 0.4285714285714286
+      },
+      {
+        "feature": "Department",
+        "groups": {
+          "Human Resources": {
+            "sample_size": 15,
+            "actual_attrition_rate": 0.13333333333333333,
+            "high_risk_rate": 0.3333333333333333,
+            "average_probability": 0.1181642363468806,
+            "precision": 0.2,
+            "recall": 0.5,
+            "false_positive_rate": 0.3076923076923077,
+            "false_negative_rate": 0.5,
+            "true_positives": 1,
+            "false_positives": 4,
+            "false_negatives": 1,
+            "true_negatives": 9,
+            "sample_warning": true
+          },
+          "Research & Development": {
+            "sample_size": 197,
+            "actual_attrition_rate": 0.14720812182741116,
+            "high_risk_rate": 0.3401015228426396,
+            "average_probability": 0.1204835438089171,
+            "precision": 0.26865671641791045,
+            "recall": 0.6206896551724138,
+            "false_positive_rate": 0.2916666666666667,
+            "false_negative_rate": 0.3793103448275862,
+            "true_positives": 18,
+            "false_positives": 49,
+            "false_negatives": 11,
+            "true_negatives": 119,
+            "sample_warning": false
+          },
+          "Sales": {
+            "sample_size": 82,
+            "actual_attrition_rate": 0.1951219512195122,
+            "high_risk_rate": 0.5975609756097561,
+            "average_probability": 0.20501086919954636,
+            "precision": 0.32653061224489793,
+            "recall": 1.0,
+            "false_positive_rate": 0.5,
+            "false_negative_rate": 0.0,
+            "true_positives": 16,
+            "false_positives": 33,
+            "false_negatives": 0,
+            "true_negatives": 33,
+            "sample_warning": false
+          }
+        },
+        "max_high_risk_rate_gap": 0.25745945276711646,
+        "max_recall_gap": 0.3793103448275862
+      },
+      {
+        "feature": "JobRole",
+        "groups": {
+          "Healthcare Representative": {
+            "sample_size": 23,
+            "actual_attrition_rate": 0.13043478260869565,
+            "high_risk_rate": 0.2608695652173913,
+            "average_probability": 0.09660936325140622,
+            "precision": 0.16666666666666666,
+            "recall": 0.3333333333333333,
+            "false_positive_rate": 0.25,
+            "false_negative_rate": 0.6666666666666666,
+            "true_positives": 1,
+            "false_positives": 5,
+            "false_negatives": 2,
+            "true_negatives": 15,
+            "sample_warning": false
+          },
+          "Human Resources": {
+            "sample_size": 11,
+            "actual_attrition_rate": 0.18181818181818182,
+            "high_risk_rate": 0.45454545454545453,
+            "average_probability": 0.1438174176622521,
+            "precision": 0.2,
+            "recall": 0.5,
+            "false_positive_rate": 0.4444444444444444,
+            "false_negative_rate": 0.5,
+            "true_positives": 1,
+            "false_positives": 4,
+            "false_negatives": 1,
+            "true_negatives": 5,
+            "sample_warning": true
+          },
+          "Laboratory Technician": {
+            "sample_size": 44,
+            "actual_attrition_rate": 0.09090909090909091,
+            "high_risk_rate": 0.5227272727272727,
+            "average_probability": 0.15943351675840942,
+            "precision": 0.17391304347826086,
+            "recall": 1.0,
+            "false_positive_rate": 0.475,
+            "false_negative_rate": 0.0,
+            "true_positives": 4,
+            "false_positives": 19,
+            "false_negatives": 0,
+            "true_negatives": 21,
+            "sample_warning": false
+          },
+          "Manager": {
+            "sample_size": 19,
+            "actual_attrition_rate": 0.0,
+            "high_risk_rate": 0.0,
+            "average_probability": 0.044749501112260316,
+            "precision": 0.0,
+            "recall": 0.0,
+            "false_positive_rate": 0.0,
+            "false_negative_rate": 0.0,
+            "true_positives": 0,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "true_negatives": 19,
+            "sample_warning": true
+          },
+          "Manufacturing Director": {
+            "sample_size": 32,
+            "actual_attrition_rate": 0.09375,
+            "high_risk_rate": 0.21875,
+            "average_probability": 0.08134266640990973,
+            "precision": 0.14285714285714285,
+            "recall": 0.3333333333333333,
+            "false_positive_rate": 0.20689655172413793,
+            "false_negative_rate": 0.6666666666666666,
+            "true_positives": 1,
+            "false_positives": 6,
+            "false_negatives": 2,
+            "true_negatives": 23,
+            "sample_warning": false
+          },
+          "Research Director": {
+            "sample_size": 17,
+            "actual_attrition_rate": 0.058823529411764705,
+            "high_risk_rate": 0.11764705882352941,
+            "average_probability": 0.05191063059165197,
+            "precision": 0.0,
+            "recall": 0.0,
+            "false_positive_rate": 0.125,
+            "false_negative_rate": 1.0,
+            "true_positives": 0,
+            "false_positives": 2,
+            "false_negatives": 1,
+            "true_negatives": 14,
+            "sample_warning": true
+          },
+          "Research Scientist": {
+            "sample_size": 72,
+            "actual_attrition_rate": 0.25,
+            "high_risk_rate": 0.4027777777777778,
+            "average_probability": 0.14789723108212152,
+            "precision": 0.41379310344827586,
+            "recall": 0.6666666666666666,
+            "false_positive_rate": 0.3148148148148148,
+            "false_negative_rate": 0.3333333333333333,
+            "true_positives": 12,
+            "false_positives": 17,
+            "false_negatives": 6,
+            "true_negatives": 37,
+            "sample_warning": false
+          },
+          "Sales Executive": {
+            "sample_size": 53,
+            "actual_attrition_rate": 0.1509433962264151,
+            "high_risk_rate": 0.5471698113207547,
+            "average_probability": 0.15804547725139922,
+            "precision": 0.27586206896551724,
+            "recall": 1.0,
+            "false_positive_rate": 0.4666666666666667,
+            "false_negative_rate": 0.0,
+            "true_positives": 8,
+            "false_positives": 21,
+            "false_negatives": 0,
+            "true_negatives": 24,
+            "sample_warning": false
+          },
+          "Sales Representative": {
+            "sample_size": 23,
+            "actual_attrition_rate": 0.34782608695652173,
+            "high_risk_rate": 0.8695652173913043,
+            "average_probability": 0.3538623376061087,
+            "precision": 0.4,
+            "recall": 1.0,
+            "false_positive_rate": 0.8,
+            "false_negative_rate": 0.0,
+            "true_positives": 8,
+            "false_positives": 12,
+            "false_negatives": 0,
+            "true_negatives": 3,
+            "sample_warning": false
+          }
+        },
+        "max_high_risk_rate_gap": 0.6508152173913043,
+        "max_recall_gap": 0.6666666666666667
+      },
+      {
+        "feature": "MaritalStatus",
+        "groups": {
+          "Divorced": {
+            "sample_size": 64,
+            "actual_attrition_rate": 0.0625,
+            "high_risk_rate": 0.390625,
+            "average_probability": 0.12180833719321527,
+            "precision": 0.16,
+            "recall": 1.0,
+            "false_positive_rate": 0.35,
+            "false_negative_rate": 0.0,
+            "true_positives": 4,
+            "false_positives": 21,
+            "false_negatives": 0,
+            "true_negatives": 39,
+            "sample_warning": false
+          },
+          "Married": {
+            "sample_size": 133,
+            "actual_attrition_rate": 0.13533834586466165,
+            "high_risk_rate": 0.3458646616541353,
+            "average_probability": 0.11764934675810032,
+            "precision": 0.2608695652173913,
+            "recall": 0.6666666666666666,
+            "false_positive_rate": 0.2956521739130435,
+            "false_negative_rate": 0.3333333333333333,
+            "true_positives": 12,
+            "false_positives": 34,
+            "false_negatives": 6,
+            "true_negatives": 81,
+            "sample_warning": false
+          },
+          "Single": {
+            "sample_size": 97,
+            "actual_attrition_rate": 0.25773195876288657,
+            "high_risk_rate": 0.5154639175257731,
+            "average_probability": 0.1945929510384491,
+            "precision": 0.38,
+            "recall": 0.76,
+            "false_positive_rate": 0.4305555555555556,
+            "false_negative_rate": 0.24,
+            "true_positives": 19,
+            "false_positives": 31,
+            "false_negatives": 6,
+            "true_negatives": 41,
+            "sample_warning": false
+          }
+        },
+        "max_high_risk_rate_gap": 0.16959925587163782,
+        "max_recall_gap": 0.33333333333333337
+      }
+    ],
+    "flagged_dimensions": [
+      {
+        "feature": "AgeGroup",
+        "max_high_risk_rate_gap": 0.33428446005267776,
+        "max_recall_gap": 0.4285714285714286
+      },
+      {
+        "feature": "Department",
+        "max_high_risk_rate_gap": 0.25745945276711646,
+        "max_recall_gap": 0.3793103448275862
+      },
+      {
+        "feature": "JobRole",
+        "max_high_risk_rate_gap": 0.6508152173913043,
+        "max_recall_gap": 0.6666666666666667
+      },
+      {
+        "feature": "MaritalStatus",
+        "max_high_risk_rate_gap": 0.16959925587163782,
+        "max_recall_gap": 0.33333333333333337
+      }
+    ],
+    "ethics_note": "This dataset is a small public HR sample. Fairness diagnostics are for governance review and should not justify automated employment decisions."
+  },
+  "model_card": {
+    "model_name": "AttritionPredictor",
+    "description": "Binary classifier estimating employee attrition risk for HR retention planning.",
+    "intended_use": "Portfolio MLOps governance demo, HR risk prioritization, and model monitoring workflows.",
+    "not_for_use": [
+      "Automated employment decisions.",
+      "Termination, promotion, compensation, or discipline decisions without human review.",
+      "Production use on real HR records without legal, privacy, and fairness review."
+    ],
+    "limitations": [
+      "IBM HR Attrition is a small public dataset and may not reflect a real workforce.",
+      "Predictions should support human HR review, not automated employment decisions.",
+      "Fairness metrics can be unstable for small groups; review sample warnings before interpreting gaps."
+    ],
+    "preprocessing": {
+      "approach": "Train/test split before preprocessing, ColumnTransformer pipelines per model, median numeric imputation, most-frequent categorical imputation, one-hot encoding for categoricals.",
+      "excluded_features": [
+        "EmployeeNumber",
+        "EmployeeCount",
+        "StandardHours",
+        "Over18"
+      ],
+      "leakage_control": "EmployeeNumber and constant columns are excluded from training features."
+    },
+    "decision_policy": {
+      "champion_selection": "Lowest business cost first, then PR-AUC, then recall.",
+      "decision_threshold": 0.1,
+      "thresholds": {
+        "best_f1_threshold": 0.15,
+        "best_recall_threshold": 0.05,
+        "best_business_cost_threshold": 0.1,
+        "selected_threshold": 0.1,
+        "selected_business_cost": 309000,
+        "selected_precision": 0.2892561983471074,
+        "selected_recall": 0.7446808510638298,
+        "selected_f1": 0.41666666666666663,
+        "selected_confusion_matrix": {
+          "true_negatives": 161,
+          "false_positives": 86,
+          "false_negatives": 12,
+          "true_positives": 35
+        },
+        "low_threshold": 0.075,
+        "medium_threshold": 0.1,
+        "high_threshold": 0.65,
+        "false_negative_cost": 15000,
+        "false_positive_cost": 1500
+      },
+      "calibration": {
+        "method": "sigmoid",
+        "calibrated": true,
+        "brier_score_before": 0.13711715834001734,
+        "brier_score_after": 0.11524485722224584,
+        "status": "acceptable",
+        "plot_path": "reports\\performance_logs\\calibration_curve.png"
+      }
+    },
+    "performance": {
+      "accuracy": 0.6666666666666666,
+      "auc": 0.7528641571194763,
+      "pr_auc": 0.45362312094610435,
+      "average_precision": 0.45362312094610435,
+      "f1": 0.41666666666666663,
+      "precision": 0.2892561983471074,
+      "recall": 0.7446808510638298,
+      "brier_score": 0.11524485722224584,
+      "business_cost": 309000,
+      "thresholds": {
+        "best_f1_threshold": 0.15,
+        "best_recall_threshold": 0.05,
+        "best_business_cost_threshold": 0.1,
+        "selected_threshold": 0.1,
+        "selected_business_cost": 309000,
+        "selected_precision": 0.2892561983471074,
+        "selected_recall": 0.7446808510638298,
+        "selected_f1": 0.41666666666666663,
+        "selected_confusion_matrix": {
+          "true_negatives": 161,
+          "false_positives": 86,
+          "false_negatives": 12,
+          "true_positives": 35
+        }
+      },
+      "threshold_table": [
+        {
+          "model_name": "xgboost",
+          "threshold": 0.05,
+          "accuracy": 0.4013605442176871,
+          "precision": 0.19718309859154928,
+          "recall": 0.8936170212765957,
+          "f1": 0.3230769230769231,
+          "true_negatives": 76,
+          "false_positives": 171,
+          "false_negatives": 5,
+          "true_positives": 42,
+          "business_cost": 331500
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.1,
+          "accuracy": 0.6666666666666666,
+          "precision": 0.2892561983471074,
+          "recall": 0.7446808510638298,
+          "f1": 0.41666666666666663,
+          "true_negatives": 161,
+          "false_positives": 86,
+          "false_negatives": 12,
+          "true_positives": 35,
+          "business_cost": 309000
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.15,
+          "accuracy": 0.7585034013605442,
+          "precision": 0.35,
+          "recall": 0.5957446808510638,
+          "f1": 0.4409448818897637,
+          "true_negatives": 195,
+          "false_positives": 52,
+          "false_negatives": 19,
+          "true_positives": 28,
+          "business_cost": 363000
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.2,
+          "accuracy": 0.7789115646258503,
+          "precision": 0.36363636363636365,
+          "recall": 0.5106382978723404,
+          "f1": 0.4247787610619469,
+          "true_negatives": 205,
+          "false_positives": 42,
+          "false_negatives": 23,
+          "true_positives": 24,
+          "business_cost": 408000
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.25,
+          "accuracy": 0.782312925170068,
+          "precision": 0.34545454545454546,
+          "recall": 0.40425531914893614,
+          "f1": 0.37254901960784315,
+          "true_negatives": 211,
+          "false_positives": 36,
+          "false_negatives": 28,
+          "true_positives": 19,
+          "business_cost": 474000
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.3,
+          "accuracy": 0.826530612244898,
+          "precision": 0.4523809523809524,
+          "recall": 0.40425531914893614,
+          "f1": 0.4269662921348315,
+          "true_negatives": 224,
+          "false_positives": 23,
+          "false_negatives": 28,
+          "true_positives": 19,
+          "business_cost": 454500
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.35,
+          "accuracy": 0.8367346938775511,
+          "precision": 0.4827586206896552,
+          "recall": 0.2978723404255319,
+          "f1": 0.3684210526315789,
+          "true_negatives": 232,
+          "false_positives": 15,
+          "false_negatives": 33,
+          "true_positives": 14,
+          "business_cost": 517500
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.4,
+          "accuracy": 0.8401360544217688,
+          "precision": 0.5,
+          "recall": 0.2553191489361702,
+          "f1": 0.3380281690140845,
+          "true_negatives": 235,
+          "false_positives": 12,
+          "false_negatives": 35,
+          "true_positives": 12,
+          "business_cost": 543000
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.45,
+          "accuracy": 0.8503401360544217,
+          "precision": 0.5714285714285714,
+          "recall": 0.2553191489361702,
+          "f1": 0.35294117647058826,
+          "true_negatives": 238,
+          "false_positives": 9,
+          "false_negatives": 35,
+          "true_positives": 12,
+          "business_cost": 538500
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.5,
+          "accuracy": 0.8537414965986394,
+          "precision": 0.6666666666666666,
+          "recall": 0.1702127659574468,
+          "f1": 0.2711864406779661,
+          "true_negatives": 243,
+          "false_positives": 4,
+          "false_negatives": 39,
+          "true_positives": 8,
+          "business_cost": 591000
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.55,
+          "accuracy": 0.8537414965986394,
+          "precision": 0.7,
+          "recall": 0.14893617021276595,
+          "f1": 0.24561403508771928,
+          "true_negatives": 244,
+          "false_positives": 3,
+          "false_negatives": 40,
+          "true_positives": 7,
+          "business_cost": 604500
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.6,
+          "accuracy": 0.8605442176870748,
+          "precision": 0.875,
+          "recall": 0.14893617021276595,
+          "f1": 0.25454545454545446,
+          "true_negatives": 246,
+          "false_positives": 1,
+          "false_negatives": 40,
+          "true_positives": 7,
+          "business_cost": 601500
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.65,
+          "accuracy": 0.8537414965986394,
+          "precision": 0.8333333333333334,
+          "recall": 0.10638297872340426,
+          "f1": 0.18867924528301885,
+          "true_negatives": 246,
+          "false_positives": 1,
+          "false_negatives": 42,
+          "true_positives": 5,
+          "business_cost": 631500
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.7,
+          "accuracy": 0.8537414965986394,
+          "precision": 0.8333333333333334,
+          "recall": 0.10638297872340426,
+          "f1": 0.18867924528301885,
+          "true_negatives": 246,
+          "false_positives": 1,
+          "false_negatives": 42,
+          "true_positives": 5,
+          "business_cost": 631500
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.75,
+          "accuracy": 0.8401360544217688,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_negatives": 247,
+          "false_positives": 0,
+          "false_negatives": 47,
+          "true_positives": 0,
+          "business_cost": 705000
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.8,
+          "accuracy": 0.8401360544217688,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_negatives": 247,
+          "false_positives": 0,
+          "false_negatives": 47,
+          "true_positives": 0,
+          "business_cost": 705000
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.85,
+          "accuracy": 0.8401360544217688,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_negatives": 247,
+          "false_positives": 0,
+          "false_negatives": 47,
+          "true_positives": 0,
+          "business_cost": 705000
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.9,
+          "accuracy": 0.8401360544217688,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_negatives": 247,
+          "false_positives": 0,
+          "false_negatives": 47,
+          "true_positives": 0,
+          "business_cost": 705000
+        },
+        {
+          "model_name": "xgboost",
+          "threshold": 0.95,
+          "accuracy": 0.8401360544217688,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "true_negatives": 247,
+          "false_positives": 0,
+          "false_negatives": 47,
+          "true_positives": 0,
+          "business_cost": 705000
+        }
+      ]
+    },
+    "champion_model_type": "xgboost",
+    "training_date_utc": "2026-06-05T09:11:57.059746+00:00",
+    "data_version": "data/raw/hr_attrition.csv",
+    "mlflow_run_id": null,
+    "model_registry_version": null,
+    "fairness_summary": {
+      "report_path": "reports\\performance_logs\\fairness_report.json",
+      "generated_at_utc": "2026-06-05T09:11:59.917300+00:00",
+      "flagged_dimensions": [
+        {
+          "feature": "AgeGroup",
+          "max_high_risk_rate_gap": 0.33428446005267776,
+          "max_recall_gap": 0.4285714285714286
+        },
+        {
+          "feature": "Department",
+          "max_high_risk_rate_gap": 0.25745945276711646,
+          "max_recall_gap": 0.3793103448275862
+        },
+        {
+          "feature": "JobRole",
+          "max_high_risk_rate_gap": 0.6508152173913043,
+          "max_recall_gap": 0.6666666666666667
+        },
+        {
+          "feature": "MaritalStatus",
+          "max_high_risk_rate_gap": 0.16959925587163782,
+          "max_recall_gap": 0.33333333333333337
+        }
+      ]
+    },
+    "promotion_result": {
+      "generated_at_utc": "2026-06-05T09:11:59.924298+00:00",
+      "registered_model_name": "AttritionPredictor",
+      "local_champion_auc": 0.7528641571194763,
+      "local_champion_pr_auc": 0.45362312094610435,
+      "local_champion_business_cost": 309000,
+      "promoted": false,
+      "reason": "MLflow registry is not available; wrote local model card only."
+    },
+    "generated_at_utc": "2026-06-05T09:12:00.109614+00:00"
+  },
+  "sample_predictions": [
+    {
+      "attrition_probability": 0.18903999030590057,
+      "risk_level": "Medium",
+      "top_3_shap_drivers": [
+        {
+          "feature": "MonthlyRate",
+          "transformed_feature": "MonthlyRate",
+          "impact": 285.72381212655455,
+          "importance": 0.014668299816548824,
+          "direction": "increases risk",
+          "profile_value": 19479
+        },
+        {
+          "feature": "MonthlyIncome",
+          "transformed_feature": "MonthlyIncome",
+          "impact": 141.88883120380342,
+          "importance": 0.023675760254263878,
+          "direction": "increases risk",
+          "profile_value": 5993
+        },
+        {
+          "feature": "DailyRate",
+          "transformed_feature": "DailyRate",
+          "impact": 21.788915041834116,
+          "importance": 0.019772155210375786,
+          "direction": "increases risk",
+          "profile_value": 1102
+        }
+      ],
+      "recommended_hr_action": "Schedule a manager check-in and review workload, growth, and compensation signals.",
+      "decision_threshold": 0.1,
+      "model_name": "xgboost",
+      "model_registry_version": "local"
+    },
+    {
+      "attrition_probability": 0.04184843227267265,
+      "risk_level": "Low",
+      "top_3_shap_drivers": [
+        {
+          "feature": "MonthlyRate",
+          "transformed_feature": "MonthlyRate",
+          "impact": 365.34334353078157,
+          "importance": 0.014668299816548824,
+          "direction": "increases risk",
+          "profile_value": 24907
+        },
+        {
+          "feature": "MonthlyIncome",
+          "transformed_feature": "MonthlyIncome",
+          "impact": 121.4566501043737,
+          "importance": 0.023675760254263878,
+          "direction": "increases risk",
+          "profile_value": 5130
+        },
+        {
+          "feature": "DailyRate",
+          "transformed_feature": "DailyRate",
+          "impact": 5.516431303694844,
+          "importance": 0.019772155210375786,
+          "direction": "increases risk",
+          "profile_value": 279
+        }
+      ],
+      "recommended_hr_action": "Continue standard engagement monitoring.",
+      "decision_threshold": 0.1,
+      "model_name": "xgboost",
+      "model_registry_version": "local"
+    },
+    {
+      "attrition_probability": 0.3217201828956604,
+      "risk_level": "Medium",
+      "top_3_shap_drivers": [
+        {
+          "feature": "MonthlyIncome",
+          "transformed_feature": "MonthlyIncome",
+          "impact": 49.482338931411505,
+          "importance": 0.023675760254263878,
+          "direction": "increases risk",
+          "profile_value": 2090
+        },
+        {
+          "feature": "MonthlyRate",
+          "transformed_feature": "MonthlyRate",
+          "impact": 35.14524636045098,
+          "importance": 0.014668299816548824,
+          "direction": "increases risk",
+          "profile_value": 2396
+        },
+        {
+          "feature": "DailyRate",
+          "transformed_feature": "DailyRate",
+          "impact": 27.147169103845954,
+          "importance": 0.019772155210375786,
+          "direction": "increases risk",
+          "profile_value": 1373
+        }
+      ],
+      "recommended_hr_action": "Schedule a manager check-in and review workload, growth, and compensation signals.",
+      "decision_threshold": 0.1,
+      "model_name": "xgboost",
+      "model_registry_version": "local"
+    }
+  ]
+}

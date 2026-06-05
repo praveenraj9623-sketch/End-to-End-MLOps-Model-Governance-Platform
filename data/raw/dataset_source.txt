@@ -1,0 +1,4 @@
+Original uploaded file: WA_Fn-UseC_-HR-Employee-Attrition.csv
+Saved in this project as: data/raw/hr_attrition.csv
+Dataset: IBM HR Analytics Employee Attrition
+Target column: Attrition

@@ -1,0 +1,74 @@
+schema: '2.0'
+stages:
+  ingest:
+    cmd: python -m src.data.ingestion
+    deps:
+    - path: data/raw/hr_attrition.csv
+      hash: md5
+      md5: ad8207459e5732574372cf8ff619883f
+      size: 227977
+    - path: src/data/ingestion.py
+      hash: md5
+      md5: a4fbe12b2d1f1b039d891ec33ed2ea2e
+      size: 8488
+    outs:
+    - path: reports/performance_logs/data_quality_log.csv
+      hash: md5
+      md5: ea49c0bbdb7671322c92d17bfe0d17c2
+      size: 13711
+  featurize:
+    cmd: python -m src.features.engineering
+    deps:
+    - path: data/raw/hr_attrition.csv
+      hash: md5
+      md5: ad8207459e5732574372cf8ff619883f
+      size: 227977
+    - path: src/features/engineering.py
+      hash: md5
+      md5: 15be93c76987fb87b5d44b44625eb7ad
+      size: 5610
+    outs:
+    - path: data/processed/attrition_features.csv
+      hash: md5
+      md5: 4c1217bb35d31fef14bcb46a7e8fe60e
+      size: 898545
+    - path: models/scaler.joblib
+      hash: md5
+      md5: 87f1a83651fdf62251b7a244f78d185d
+      size: 2095
+  train:
+    cmd: python -m src.models.train
+    deps:
+    - path: data/processed/attrition_features.csv
+      hash: md5
+      md5: 4c1217bb35d31fef14bcb46a7e8fe60e
+      size: 898545
+    - path: src/models/train.py
+      hash: md5
+      md5: 161aae1e56f4c84beebb931b7e57c57e
+      size: 12200
+    outs:
+    - path: models/attrition_model.joblib
+      hash: md5
+      md5: 03263281209d4007373ab62e4b7e6f86
+      size: 2868
+  evaluate:
+    cmd: python -m src.models.evaluate
+    deps:
+    - path: data/processed/attrition_features.csv
+      hash: md5
+      md5: 4c1217bb35d31fef14bcb46a7e8fe60e
+      size: 898545
+    - path: models/attrition_model.joblib
+      hash: md5
+      md5: 03263281209d4007373ab62e4b7e6f86
+      size: 2868
+    - path: src/models/evaluate.py
+      hash: md5
+      md5: d96066df8002d356e17e1d7035497a93
+      size: 8523
+    outs:
+    - path: reports/performance_logs/model_metrics.csv
+      hash: md5
+      md5: 32bd9f6dd6b1309718120eda20319f0b
+      size: 303

@@ -1,0 +1,75 @@
+{
+  "timestamp_utc": "2026-06-05T10:01:29.188858+00:00",
+  "model_name": "xgboost",
+  "model_registry_version": null,
+  "mlflow_run_id": null,
+  "metrics": {
+    "classification": {
+      "accuracy": 0.6666666666666666,
+      "auc": 0.7528641571194763,
+      "pr_auc": 0.45362312094610435,
+      "average_precision": 0.45362312094610435,
+      "brier_score": 0.11524485722224584,
+      "f1": 0.41666666666666663,
+      "precision": 0.2892561983471074,
+      "recall": 0.7446808510638298,
+      "decision_threshold": 0.1,
+      "classification_report": {
+        "0": {
+          "precision": 0.930635838150289,
+          "recall": 0.6518218623481782,
+          "f1-score": 0.7666666666666668,
+          "support": 247.0
+        },
+        "1": {
+          "precision": 0.2892561983471074,
+          "recall": 0.7446808510638298,
+          "f1-score": 0.41666666666666663,
+          "support": 47.0
+        },
+        "accuracy": 0.6666666666666666,
+        "macro avg": {
+          "precision": 0.6099460182486982,
+          "recall": 0.698251356706004,
+          "f1-score": 0.5916666666666668,
+          "support": 294.0
+        },
+        "weighted avg": {
+          "precision": 0.8281023583178077,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.7107142857142859,
+          "support": 294.0
+        }
+      }
+    },
+    "shap": {
+      "shap_summary_plot": "reports\\shap_reports\\xgboost_evaluation_shap_summary.png"
+    },
+    "confusion_matrix": {
+      "confusion_matrix_plot": "reports\\performance_logs\\confusion_matrix.png",
+      "confusion_matrix": [
+        [
+          161,
+          86
+        ],
+        [
+          12,
+          35
+        ]
+      ]
+    },
+    "business": {
+      "true_negatives": 161,
+      "false_positives": 86,
+      "false_negatives": 12,
+      "true_positives": 35,
+      "decision_threshold": 0.1,
+      "false_negative_cost_usd": 15000,
+      "false_positive_cost_usd": 1500,
+      "missed_attrition_cost_usd": 180000,
+      "unnecessary_intervention_cost_usd": 129000,
+      "estimated_total_error_cost_usd": 309000,
+      "cost_context": "False negatives represent likely attrition cases HR missed; false positives represent unnecessary retention outreach."
+    }
+  }
+}

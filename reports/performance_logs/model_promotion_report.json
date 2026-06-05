@@ -1,0 +1,9 @@
+{
+  "generated_at_utc": "2026-06-05T13:52:39.838757+00:00",
+  "registered_model_name": "AttritionPredictor",
+  "local_champion_auc": 0.7528641571194763,
+  "local_champion_pr_auc": 0.45362312094610435,
+  "local_champion_business_cost": 309000,
+  "promoted": false,
+  "reason": "MLflow registry is not available; wrote local model card only."
+}

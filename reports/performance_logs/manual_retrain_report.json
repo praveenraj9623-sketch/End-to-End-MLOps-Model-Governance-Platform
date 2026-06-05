@@ -1,0 +1,71 @@
+{
+  "started_at_utc": "2026-06-05T13:52:18.532307+00:00",
+  "mode": "local_python_modules",
+  "steps": [
+    {
+      "module": "src.data.validation",
+      "started_at_utc": "2026-06-05T13:52:18.532307+00:00",
+      "finished_at_utc": "2026-06-05T13:52:19.206020+00:00",
+      "status": "success",
+      "returncode": 0,
+      "stdout": "Validation report saved to reports\\performance_logs\\validation_report.json\n{'overall_status': 'pass', 'check_count': 4, 'failed_checks': 0, 'warning_checks': 0}\n",
+      "stderr": ""
+    },
+    {
+      "module": "src.features.engineering",
+      "started_at_utc": "2026-06-05T13:52:19.206020+00:00",
+      "finished_at_utc": "2026-06-05T13:52:20.461267+00:00",
+      "status": "success",
+      "returncode": 0,
+      "stdout": "{'processed_path': 'data\\\\processed\\\\attrition_features.csv', 'train_rows': 1176, 'test_rows': 294, 'feature_count': 51, 'excluded_features': ['EmployeeNumber', 'EmployeeCount', 'StandardHours', 'Over18'], 'scaler_path': 'models\\\\scaler.joblib', 'preprocessing_path': 'models\\\\preprocessing.joblib', 'reference_path': 'data\\\\reference\\\\reference_dataset.csv'}\n",
+      "stderr": ""
+    },
+    {
+      "module": "src.models.train",
+      "started_at_utc": "2026-06-05T13:52:20.461267+00:00",
+      "finished_at_utc": "2026-06-05T13:52:26.207888+00:00",
+      "status": "success",
+      "returncode": 0,
+      "stdout": " 0.25454545454545446,\n        \"true_negatives\": 246,\n        \"false_positives\": 1,\n        \"false_negatives\": 40,\n        \"true_positives\": 7,\n        \"false_positive_cost\": 1500,\n        \"false_negative_cost\": 15000,\n        \"business_cost\": 601500\n      },\n      {\n        \"model_name\": \"xgboost\",\n        \"threshold\": 0.65,\n        \"accuracy\": 0.8537414965986394,\n        \"precision\": 0.8333333333333334,\n        \"recall\": 0.10638297872340426,\n        \"f1\": 0.18867924528301885,\n        \"true_negatives\": 246,\n        \"false_positives\": 1,\n        \"false_negatives\": 42,\n        \"true_positives\": 5,\n        \"false_positive_cost\": 1500,\n        \"false_negative_cost\": 15000,\n        \"business_cost\": 631500\n      },\n      {\n        \"model_name\": \"xgboost\",\n        \"threshold\": 0.7,\n        \"accuracy\": 0.8537414965986394,\n        \"precision\": 0.8333333333333334,\n        \"recall\": 0.10638297872340426,\n        \"f1\": 0.18867924528301885,\n        \"true_negatives\": 246,\n        \"false_positives\": 1,\n        \"false_negatives\": 42,\n        \"true_positives\": 5,\n        \"false_positive_cost\": 1500,\n        \"false_negative_cost\": 15000,\n        \"business_cost\": 631500\n      },\n      {\n        \"model_name\": \"xgboost\",\n        \"threshold\": 0.75,\n        \"accuracy\": 0.8401360544217688,\n        \"precision\": 0.0,\n        \"recall\": 0.0,\n        \"f1\": 0.0,\n        \"true_negatives\": 247,\n        \"false_positives\": 0,\n        \"false_negatives\": 47,\n        \"true_positives\": 0,\n        \"false_positive_cost\": 1500,\n        \"false_negative_cost\": 15000,\n        \"business_cost\": 705000\n      },\n      {\n        \"model_name\": \"xgboost\",\n        \"threshold\": 0.8,\n        \"accuracy\": 0.8401360544217688,\n        \"precision\": 0.0,\n        \"recall\": 0.0,\n        \"f1\": 0.0,\n        \"true_negatives\": 247,\n        \"false_positives\": 0,\n        \"false_negatives\": 47,\n        \"true_positives\": 0,\n        \"false_positive_cost\": 1500,\n        \"false_negative_cost\": 15000,\n        \"business_cost\": 705000\n      },\n      {\n        \"model_name\": \"xgboost\",\n        \"threshold\": 0.85,\n        \"accuracy\": 0.8401360544217688,\n        \"precision\": 0.0,\n        \"recall\": 0.0,\n        \"f1\": 0.0,\n        \"true_negatives\": 247,\n        \"false_positives\": 0,\n        \"false_negatives\": 47,\n        \"true_positives\": 0,\n        \"false_positive_cost\": 1500,\n        \"false_negative_cost\": 15000,\n        \"business_cost\": 705000\n      },\n      {\n        \"model_name\": \"xgboost\",\n        \"threshold\": 0.9,\n        \"accuracy\": 0.8401360544217688,\n        \"precision\": 0.0,\n        \"recall\": 0.0,\n        \"f1\": 0.0,\n        \"true_negatives\": 247,\n        \"false_positives\": 0,\n        \"false_negatives\": 47,\n        \"true_positives\": 0,\n        \"false_positive_cost\": 1500,\n        \"false_negative_cost\": 15000,\n        \"business_cost\": 705000\n      },\n      {\n        \"model_name\": \"xgboost\",\n        \"threshold\": 0.95,\n        \"accuracy\": 0.8401360544217688,\n        \"precision\": 0.0,\n        \"recall\": 0.0,\n        \"f1\": 0.0,\n        \"true_negatives\": 247,\n        \"false_positives\": 0,\n        \"false_negatives\": 47,\n        \"true_positives\": 0,\n        \"false_positive_cost\": 1500,\n        \"false_negative_cost\": 15000,\n        \"business_cost\": 705000\n      }\n    ],\n    \"active_threshold_metrics\": {\n      \"model_name\": \"xgboost\",\n      \"threshold\": 0.1,\n      \"accuracy\": 0.6666666666666666,\n      \"precision\": 0.2892561983471074,\n      \"recall\": 0.7446808510638298,\n      \"f1\": 0.41666666666666663,\n      \"true_negatives\": 161,\n      \"false_positives\": 86,\n      \"false_negatives\": 12,\n      \"true_positives\": 35,\n      \"false_positive_cost\": 1500,\n      \"false_negative_cost\": 15000,\n      \"business_cost\": 309000\n    },\n    \"active_confusion_matrix\": {\n      \"true_negatives\": 161,\n      \"false_positives\": 86,\n      \"false_negatives\": 12,\n      \"true_positives\": 35\n    }\n  },\n  \"run_id\": null,\n  \"model_registry_version\": null,\n  \"selection_rule\": \"lowest business_cost, then higher pr_auc, then higher recall\"\n}\n",
+      "stderr": "C:\\Users\\admin\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\mlflow\\utils\\requirements_utils.py:20: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources  # noqa: TID251\n2026/06/05 19:22:23 INFO mlflow.store.db.utils: Creating initial MLflow database tables...\n2026/06/05 19:22:23 INFO mlflow.store.db.utils: Updating database tables\nINFO  [alembic.runtime.migration] Context impl SQLiteImpl.\nINFO  [alembic.runtime.migration] Will assume non-transactional DDL.\nC:\\Users\\admin\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\joblib\\externals\\loky\\backend\\context.py:136: UserWarning: Could not find the number of physical cores for the following reason:\nfound 0 physical cores < 1\nReturning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.\n  warnings.warn(\n  File \"C:\\Users\\admin\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\joblib\\externals\\loky\\backend\\context.py\", line 282, in _count_physical_cores\n    raise ValueError(f\"found {cpu_count_physical} physical cores < 1\")\n"
+    },
+    {
+      "module": "src.models.evaluate",
+      "started_at_utc": "2026-06-05T13:52:26.207888+00:00",
+      "finished_at_utc": "2026-06-05T13:52:28.392645+00:00",
+      "status": "success",
+      "returncode": 0,
+      "stdout": "Evaluation snapshot saved to reports\\performance_logs\\performance_snapshot_20260605T135228Z.json\n{\n  \"auc\": 0.7528641571194763,\n  \"f1\": 0.41666666666666663\n}\n",
+      "stderr": "C:\\Users\\admin\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\mlflow\\utils\\requirements_utils.py:20: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources  # noqa: TID251\n"
+    },
+    {
+      "module": "src.monitoring.drift_detection",
+      "started_at_utc": "2026-06-05T13:52:28.392645+00:00",
+      "finished_at_utc": "2026-06-05T13:52:36.583135+00:00",
+      "status": "success",
+      "returncode": 0,
+      "stdout": "Data drift report saved to reports\\drift_reports\\data_drift_report_20260605T135229Z.html\n{\n  \"drift_score\": 0.044818229109795826,\n  \"retraining_required\": false\n}\n",
+      "stderr": "C:\\Users\\admin\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\mlflow\\utils\\requirements_utils.py:20: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources  # noqa: TID251\n"
+    },
+    {
+      "module": "src.governance.fairness",
+      "started_at_utc": "2026-06-05T13:52:36.583135+00:00",
+      "finished_at_utc": "2026-06-05T13:52:38.390499+00:00",
+      "status": "success",
+      "returncode": 0,
+      "stdout": "Fairness report saved to reports\\performance_logs\\fairness_report.json\n{\n  \"flagged_dimensions\": [\n    {\n      \"feature\": \"AgeGroup\",\n      \"max_high_risk_rate_gap\": 0.33428446005267776,\n      \"max_recall_gap\": 0.4285714285714286,\n      \"review_status\": \"needs_review\",\n      \"sample_warning\": false\n    },\n    {\n      \"feature\": \"Department\",\n      \"max_high_risk_rate_gap\": 0.25745945276711646,\n      \"max_recall_gap\": 0.3793103448275862,\n      \"review_status\": \"needs_review\",\n      \"sample_warning\": true\n    },\n    {\n      \"feature\": \"JobRole\",\n      \"max_high_risk_rate_gap\": 0.6508152173913043,\n      \"max_recall_gap\": 0.6666666666666667,\n      \"review_status\": \"needs_review\",\n      \"sample_warning\": true\n    },\n    {\n      \"feature\": \"MaritalStatus\",\n      \"max_high_risk_rate_gap\": 0.16959925587163782,\n      \"max_recall_gap\": 0.33333333333333337,\n      \"review_status\": \"needs_review\",\n      \"sample_warning\": false\n    }\n  ]\n}\n",
+      "stderr": "C:\\Users\\admin\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\mlflow\\utils\\requirements_utils.py:20: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources  # noqa: TID251\n"
+    },
+    {
+      "module": "src.models.register",
+      "started_at_utc": "2026-06-05T13:52:38.390499+00:00",
+      "finished_at_utc": "2026-06-05T13:52:40.431161+00:00",
+      "status": "success",
+      "returncode": 0,
+      "stdout": "MLflow tracking unavailable; using local model artifacts only: Can't locate revision identified by 'da6fb0208061'\nModel card saved to reports\\model_card.json\n{\n  \"generated_at_utc\": \"2026-06-05T13:52:39.838757+00:00\",\n  \"registered_model_name\": \"AttritionPredictor\",\n  \"local_champion_auc\": 0.7528641571194763,\n  \"local_champion_pr_auc\": 0.45362312094610435,\n  \"local_champion_business_cost\": 309000,\n  \"promoted\": false,\n  \"reason\": \"MLflow registry is not available; wrote local model card only.\"\n}\n",
+      "stderr": "C:\\Users\\admin\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\site-packages\\mlflow\\utils\\requirements_utils.py:20: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\n  import pkg_resources  # noqa: TID251\n2026/06/05 19:22:40 INFO mlflow.store.db.utils: Creating initial MLflow database tables...\n2026/06/05 19:22:40 INFO mlflow.store.db.utils: Updating database tables\nINFO  [alembic.runtime.migration] Context impl SQLiteImpl.\nINFO  [alembic.runtime.migration] Will assume non-transactional DDL.\n"
+    }
+  ],
+  "status": "success",
+  "finished_at_utc": "2026-06-05T13:52:40.431161+00:00"
+}

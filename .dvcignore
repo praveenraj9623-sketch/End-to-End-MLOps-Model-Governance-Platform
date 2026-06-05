@@ -1,0 +1,4 @@
+# Add files or folders for DVC to ignore here
+.venv/
+__pycache__/
+mlruns/

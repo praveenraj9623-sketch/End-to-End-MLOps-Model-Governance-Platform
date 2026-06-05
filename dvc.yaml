@@ -1,0 +1,72 @@
+stages:
+  ingest:
+    cmd: python -m src.data.ingestion
+    deps:
+      - data/raw/hr_attrition.csv
+      - src/data/ingestion.py
+    outs:
+      - reports/performance_logs/data_quality_log.csv
+
+  featurize:
+    cmd: python -m src.features.engineering
+    deps:
+      - data/raw/hr_attrition.csv
+      - src/features/engineering.py
+    outs:
+      - data/processed/attrition_features.csv
+      - data/processed/train_features.csv
+      - data/processed/test_features.csv
+      - data/reference/reference_dataset.csv
+      - models/preprocessing.joblib
+      - models/scaler.joblib
+
+  train:
+    cmd: python -m src.models.train
+    deps:
+      - data/raw/hr_attrition.csv
+      - models/preprocessing.joblib
+      - src/models/train.py
+    outs:
+      - models/attrition_model.joblib
+      - models/best_model.joblib
+      - reports/performance_logs/candidate_model_comparison.csv
+      - reports/performance_logs/threshold_metrics.csv
+
+  evaluate:
+    cmd: python -m src.models.evaluate
+    deps:
+      - models/attrition_model.joblib
+      - data/raw/hr_attrition.csv
+      - src/models/evaluate.py
+    outs:
+      - reports/performance_logs/model_metrics.csv
+      - reports/performance_logs/latest_performance_snapshot.json
+
+  monitor:
+    cmd: python -m src.monitoring.drift_detection
+    deps:
+      - models/attrition_model.joblib
+      - data/raw/hr_attrition.csv
+      - src/monitoring/drift_detection.py
+    outs:
+      - reports/performance_logs/current_production_predictions.csv
+      - reports/performance_logs/drift_alert.json
+
+  fairness:
+    cmd: python -m src.governance.fairness
+    deps:
+      - models/attrition_model.joblib
+      - data/raw/hr_attrition.csv
+      - src/governance/fairness.py
+    outs:
+      - reports/performance_logs/fairness_report.json
+
+  register:
+    cmd: python -m src.models.register
+    deps:
+      - models/attrition_model.joblib
+      - reports/performance_logs/fairness_report.json
+      - src/models/register.py
+    outs:
+      - reports/model_card.json
+      - reports/performance_logs/model_promotion_report.json
