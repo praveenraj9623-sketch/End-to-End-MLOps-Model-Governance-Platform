@@ -286,15 +286,22 @@ def _prediction_profile_from_row(row: pd.Series) -> dict[str, Any]:
     return clean_profile
 
 
-def _create_demo_audit_entries(raw_data: pd.DataFrame, artifact: dict[str, Any], count: int = 8) -> int:
+def _employee_audit_options(raw_data: pd.DataFrame) -> list[tuple[str, int]]:
     if raw_data.empty:
-        return 0
-    created = 0
-    for _, row in raw_data.head(count).iterrows():
-        profile = _prediction_profile_from_row(row)
-        predict_employee(profile, write_audit=True, artifact=artifact)
-        created += 1
-    return created
+        return []
+    options: list[tuple[str, int]] = []
+    for index, row in raw_data.iterrows():
+        employee_id = row.get("EmployeeNumber", index)
+        department = row.get("Department", "unknown department")
+        job_role = row.get("JobRole", "unknown role")
+        label = f"Employee {employee_id} - {department} - {job_role}"
+        options.append((label, int(index)))
+    return options
+
+
+def _audit_prediction_for_row(raw_data: pd.DataFrame, row_index: int, artifact: dict[str, Any]) -> dict[str, Any]:
+    profile = _prediction_profile_from_row(raw_data.loc[row_index])
+    return predict_employee(profile, write_audit=True, artifact=artifact)
 
 
 def _image_if_exists(path: str | None, caption: str, width: int = 850) -> None:
@@ -677,6 +684,13 @@ with tabs[4]:
         cols[3].metric("Model", prediction.get("model_name") or "unknown")
 
         _info_callout(f"<strong>Recommended HR action:</strong> {prediction['recommended_hr_action']}", "callout")
+        if st.button("Write This Prediction To Audit Trail", type="primary"):
+            with st.spinner("Writing audited prediction entry..."):
+                audited_prediction = predict_employee(profile, write_audit=True, artifact=artifact)
+            st.success(
+                "Audited prediction written: "
+                f"{audited_prediction['risk_level']} risk at {_fmt_pct(audited_prediction['attrition_probability'])}."
+            )
 
         drivers = pd.DataFrame(prediction.get("top_3_shap_drivers", []))
         if not drivers.empty:
@@ -778,24 +792,31 @@ with tabs[5]:
 
 with tabs[6]:
     st.subheader("Prediction Audit Trail")
-    seeded_message = st.session_state.pop("audit_seed_message", None)
-    if seeded_message:
-        st.success(seeded_message)
+    st.markdown("#### Create audited prediction")
+    audit_options = _employee_audit_options(raw_data)
+    if audit_options:
+        audit_labels = [label for label, _ in audit_options]
+        selected_audit_label = st.selectbox("Employee profile to score and audit", audit_labels)
+        selected_audit_index = dict(audit_options)[selected_audit_label]
+        if st.button("Score And Write Audit Entry", type="primary"):
+            with st.spinner("Scoring employee and writing audit entry..."):
+                audited_prediction = _audit_prediction_for_row(raw_data, selected_audit_index, artifact)
+            st.success(
+                "Audited prediction written: "
+                f"{audited_prediction['risk_level']} risk at {_fmt_pct(audited_prediction['attrition_probability'])}."
+            )
+            st.rerun()
+    else:
+        st.caption("Raw HR sample data is not available, so audited Streamlit predictions cannot be created.")
+
     filter_cols = st.columns([1, 1, 1])
     row_limit = filter_cols[0].slider("Row limit", min_value=25, max_value=500, value=250, step=25)
     audit_entries = pd.DataFrame(read_audit_entries(limit=row_limit))
     if audit_entries.empty:
         st.info(
             "No prediction audit entries yet. On Streamlit Cloud, the separate FastAPI `/predict` service is not running inside this app process. "
-            "Create demo audited predictions here, or connect the FastAPI service/Postgres database for production audit persistence."
+            "Use the audited Streamlit prediction control above, or connect the FastAPI service/Postgres database for production audit persistence."
         )
-        if raw_data.empty:
-            st.caption("Raw HR sample data is not available, so demo audit entries cannot be created.")
-        elif st.button("Create Demo Audit Entries", type="primary"):
-            with st.spinner("Scoring sample employees and writing audit entries..."):
-                created = _create_demo_audit_entries(raw_data, artifact)
-            st.session_state["audit_seed_message"] = f"Created {created} audited demo prediction entries."
-            st.rerun()
     else:
         if "timestamp_utc" in audit_entries:
             audit_entries["timestamp_utc"] = pd.to_datetime(audit_entries["timestamp_utc"], errors="coerce", utc=True)

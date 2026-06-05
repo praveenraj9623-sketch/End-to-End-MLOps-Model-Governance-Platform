@@ -1,0 +1,2 @@
+model_name,model_registry_version,mlflow_run_id,timestamp_utc,accuracy,auc,pr_auc,f1,precision,recall,decision_threshold,estimated_total_error_cost_usd
+xgboost,,,2026-06-05T13:52:28.194188+00:00,0.6666666666666666,0.7528641571194763,0.45362312094610435,0.41666666666666663,0.2892561983471074,0.7446808510638298,0.1,309000
